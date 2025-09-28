@@ -15,6 +15,9 @@ import PregnancyNutritionGuide from './pages/blog/PregnancyNutritionGuide'
 import SafeMedicationsPregnancy from './pages/blog/SafeMedicationsPregnancy'
 import PregnancyFoodSafetyScanner from './pages/blog/PregnancyFoodSafetyScanner'
 import PregnancyAppsComparison from './pages/blog/PregnancyAppsComparison'
+import BestPregnancyApps2025 from './pages/blog/BestPregnancyApps2025.tsx'
+import PregnancyDietGuide from './pages/blog/PregnancyDietGuide.tsx'
+import PregnancyExerciseGuide from './pages/blog/PregnancyExerciseGuide.tsx'
 
 // Tools Pages
 import ToolsIndex from './pages/tools/ToolsIndex'
@@ -28,6 +31,15 @@ import CompareIndex from './pages/compare/CompareIndex'
 import SafemamaVsOvia from './pages/compare/SafemamaVsOvia'
 import SafemamaVsPregnancyPlus from './pages/compare/SafemamaVsPregnancyPlus'
 import SafemamaVsWebMD from './pages/compare/SafemamaVsWebMD'
+import SafemamaVsWhatToExpect from './pages/compare/SafemamaVsWhatToExpect.tsx'
+import SafemamaVsBabycenter from './pages/compare/SafemamaVsBabycenter.tsx'
+
+// Legal Pages
+import PrivacyPolicy from './pages/legal/PrivacyPolicy.tsx'
+import TermsOfService from './pages/legal/TermsOfService.tsx'
+import DeleteAccount from './pages/legal/DeleteAccount.tsx'
+import HelpCenter from './pages/legal/HelpCenter.tsx'
+import ContactUs from './pages/legal/ContactUs.tsx'
 
 // Country Pages
 import USPage from './pages/country/USPage'
@@ -50,6 +62,9 @@ const App: React.FC = () => {
           <Route path="/blog/safe-medications-pregnancy" element={<SafeMedicationsPregnancy />} />
           <Route path="/blog/pregnancy-food-safety-scanner" element={<PregnancyFoodSafetyScanner />} />
           <Route path="/blog/pregnancy-apps-comparison" element={<PregnancyAppsComparison />} />
+          <Route path="/blog/best-pregnancy-apps-2025" element={<BestPregnancyApps2025 />} />
+          <Route path="/blog/pregnancy-diet-guide" element={<PregnancyDietGuide />} />
+          <Route path="/blog/pregnancy-exercise-guide" element={<PregnancyExerciseGuide />} />
           
           {/* Tools Routes */}
           <Route path="/tools" element={<ToolsIndex />} />
@@ -63,6 +78,15 @@ const App: React.FC = () => {
           <Route path="/compare/safemama-vs-ovia" element={<SafemamaVsOvia />} />
           <Route path="/compare/safemama-vs-pregnancy-plus" element={<SafemamaVsPregnancyPlus />} />
           <Route path="/compare/safemama-vs-webmd" element={<SafemamaVsWebMD />} />
+          <Route path="/compare/safemama-vs-what-to-expect" element={<SafemamaVsWhatToExpect />} />
+          <Route path="/compare/safemama-vs-babycenter" element={<SafemamaVsBabycenter />} />
+          
+          {/* Legal Routes */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/delete-account" element={<DeleteAccount />} />
+          <Route path="/help" element={<HelpCenter />} />
+          <Route path="/contact" element={<ContactUs />} />
           
           {/* Country Routes */}
           <Route path="/us" element={<USPage />} />

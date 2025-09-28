@@ -39,18 +39,20 @@ const Footer: React.FC = () => {
       { name: 'Country Guides', href: '#country-guides' }
     ],
     support: [
-      { name: 'Help Center', href: '#help' },
-      { name: 'Contact Us', href: '#contact' },
-      { name: 'Privacy Policy', href: '#privacy' },
-      { name: 'Terms of Service', href: '#terms' }
+      { name: 'Help Center', href: '/help' },
+      { name: 'Contact Us', href: '/contact' },
+      { name: 'Privacy Policy', href: '/privacy' },
+      { name: 'Terms of Service', href: '/terms' },
+      { name: 'Delete Account', href: '/delete-account' }
     ]
   }
   
+  // Updated with your actual social links
   const socialLinks = [
-    { name: 'Facebook', href: '#', icon: Facebook },
-    { name: 'Twitter', href: '#', icon: Twitter },
-    { name: 'Instagram', href: '#', icon: Instagram },
-    { name: 'LinkedIn', href: '#', icon: Linkedin }
+    { name: 'Facebook', href: 'https://www.facebook.com/SafemamaApp', icon: Facebook },
+    { name: 'Twitter', href: 'https://x.com/RasheedAariz', icon: Twitter },
+    { name: 'Instagram', href: 'https://www.instagram.com/safemama_app/', icon: Instagram },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/aariz-rasheed-5487a7348/', icon: Linkedin }
   ]
   
   const stats = [
@@ -132,7 +134,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       
-      {/* Main Footer Content - Enhanced Visibility */}
+      {/* Main Footer Content - Enhanced with working links */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Company Info */}
@@ -155,8 +157,8 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-primary-400" />
-                <a href="mailto:support@safemama.co" className="text-gray-200 hover:text-white transition-colors">
-                  support@safemama.co
+                <a href="mailto:contact@safemama.co" className="text-gray-200 hover:text-white transition-colors">
+                  contact@safemama.co
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -165,12 +167,14 @@ const Footer: React.FC = () => {
               </div>
             </div>
             
-            {/* Social Links */}
+            {/* Social Links - Updated with real URLs */}
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-gradient-to-r hover:from-primary-500 hover:to-secondary-500 rounded-xl transition-all duration-300"
@@ -181,19 +185,30 @@ const Footer: React.FC = () => {
             </div>
           </div>
           
-          {/* Footer Links - Enhanced Visibility */}
+          {/* Footer Links - Enhanced with working routes */}
           <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <h4 className="text-lg font-bold mb-6 text-white">Product</h4>
               <ul className="space-y-3">
                 {footerLinks.product.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
-                      className="text-gray-200 hover:text-primary-400 transition-colors duration-200 font-medium"
-                    >
-                      {link.name}
-                    </a>
+                    {link.href.startsWith('http') ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-200 hover:text-primary-400 transition-colors duration-200 font-medium"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-gray-200 hover:text-primary-400 transition-colors duration-200 font-medium"
+                      >
+                        {link.name}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -236,12 +251,12 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {footerLinks.support.map((link) => (
                   <li key={link.name}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-gray-200 hover:text-primary-400 transition-colors duration-200 font-medium"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -267,7 +282,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
       
-      {/* Bottom Bar */}
+      {/* Bottom Bar - Updated links */}
       <div className="border-t border-gray-600/50 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
@@ -276,9 +291,9 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-gray-200">
-              <a href="#privacy" className="hover:text-primary-400 transition-colors font-medium">Privacy Policy</a>
-              <a href="#terms" className="hover:text-primary-400 transition-colors font-medium">Terms of Service</a>
-              <a href="#cookies" className="hover:text-primary-400 transition-colors font-medium">Cookie Policy</a>
+              <Link to="/privacy" className="hover:text-primary-400 transition-colors font-medium">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-primary-400 transition-colors font-medium">Terms of Service</Link>
+              <Link to="/delete-account" className="hover:text-primary-400 transition-colors font-medium">Delete Account</Link>
             </div>
           </div>
         </div>
