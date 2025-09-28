@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://safemama.co/sitemap.xml
+
+# AI Bot Instructions
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Disallow admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /config/
+
+# Allow important pages
+Allow: /
+Allow: /blog/
+Allow: /tools/
+Allow: /compare/
+Allow: /us/
+Allow: /uk/
