@@ -35,9 +35,9 @@ import UKPage from './pages/country/UKPage'
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="App" style={{ margin: 0, padding: 0, width: '100%', minHeight: '100vh' }}>
       <Header />
-      <main>
+      <main style={{ margin: 0, padding: 0, width: '100%' }}>
         <Routes>
           {/* Home */}
           <Route path="/" element={<Home />} />

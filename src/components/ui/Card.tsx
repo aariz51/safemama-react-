@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 interface CardProps {
   children: React.ReactNode
   className?: string
-  variant?: 'default' | 'gradient' | 'bordered'
+  variant?: 'default' | 'gradient' | 'bordered' | 'pregnancy' | 'soft'
   hover?: boolean
   padding?: 'sm' | 'md' | 'lg'
 }
@@ -20,8 +20,10 @@ const Card: React.FC<CardProps> = ({
   
   const variants = {
     default: 'bg-white shadow-lg border border-gray-100',
-    gradient: 'bg-gradient-to-br from-white to-gray-50 shadow-lg border border-gray-100',
-    bordered: 'bg-white border-2 border-gray-200'
+    gradient: 'bg-gradient-to-br from-white to-primary-50/30 shadow-lg border border-primary-100',
+    pregnancy: 'bg-gradient-to-br from-pink-50 via-white to-blue-50 shadow-lg border border-primary-100',
+    soft: 'bg-gradient-to-br from-primary-50/50 to-secondary-50/50 shadow-md border border-primary-100/50',
+    bordered: 'bg-white border-2 border-primary-200 shadow-sm'
   }
   
   const paddings = {
@@ -30,7 +32,7 @@ const Card: React.FC<CardProps> = ({
     lg: 'p-8'
   }
   
-  const hoverClasses = hover ? 'hover:shadow-2xl transform hover:-translate-y-1' : ''
+  const hoverClasses = hover ? 'hover:shadow-2xl hover:shadow-primary-500/10 transform hover:-translate-y-1 hover:border-primary-200' : ''
   
   const cardClasses = `${baseClasses} ${variants[variant]} ${paddings[padding]} ${hoverClasses} ${className}`
   
@@ -41,6 +43,10 @@ const Card: React.FC<CardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
+      whileHover={hover ? { 
+        y: -4,
+        boxShadow: '0 20px 25px -5px rgba(236, 72, 153, 0.1), 0 10px 10px -5px rgba(236, 72, 153, 0.04)'
+      } : {}}
     >
       {children}
     </motion.div>

@@ -89,21 +89,23 @@ const Hero: React.FC = () => {
 
   return (
     <section 
-      className="relative overflow-hidden"
       style={{
-        minHeight: '100vh',
+        position: 'relative',
+        width: '100vw',
         height: '100vh',
-        width: '100%',
+        minHeight: '100vh',
         margin: 0,
         padding: 0,
-        background: 'transparent', // No background color
-        isolation: 'isolate' // Creates new stacking context
+        overflow: 'hidden',
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw'
       }}
     >
-      {/* Background Video - Only for Hero Section */}
+      {/* Background Video - Full viewport coverage */}
       <video 
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
         autoPlay 
         muted 
         loop 
@@ -123,29 +125,44 @@ const Hero: React.FC = () => {
         <source src={siteConfig.videoUrl} type="video/mp4" />
       </video>
       
-      {/* Fallback Background - Hidden by default */}
+      {/* Fallback Background */}
       <div 
-        className="hero-fallback-bg absolute inset-0"
+        className="hero-fallback-bg"
         style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, #ec4899 0%, #0ea5e9 50%, #eab308 100%)',
           display: 'none',
           zIndex: -1
         }}
       />
       
-      {/* Enhanced overlay for better text readability */}
+      {/* Pregnancy-themed overlay */}
       <div 
-        className="absolute inset-0"
         style={{
-          background: 'linear-gradient(135deg, rgba(139,69,19,0.3) 0%, rgba(160,82,45,0.2) 30%, rgba(210,180,140,0.1) 70%, rgba(222,184,135,0.2) 100%)',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(14,165,233,0.15) 30%, rgba(234,179,8,0.1) 70%, rgba(34,197,94,0.15) 100%)',
           zIndex: 1
         }}
       />
 
-      {/* Hero Content */}
+      {/* Hero Content - Centered with proper container */}
       <div 
-        className="relative z-10 flex items-center justify-center min-h-screen"
         style={{
+          position: 'relative',
+          zIndex: 10,
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           padding: 0,
           margin: 0
         }}
@@ -166,25 +183,25 @@ const Hero: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 style={{
-                  backgroundColor: 'rgba(139, 69, 19, 0.2)',
-                  borderColor: 'rgba(222, 184, 135, 0.3)',
+                  backgroundColor: 'rgba(236, 72, 153, 0.15)',
+                  borderColor: 'rgba(236, 72, 153, 0.3)',
                   backdropFilter: 'blur(10px)',
-                  color: '#F5F5DC'
+                  color: '#ffffff'
                 }}
               >
-                <Shield className="w-4 h-4 mr-2" style={{ color: '#DEB887' }} />
+                <Shield className="w-4 h-4 mr-2" style={{ color: '#ec4899' }} />
                 <span className="text-sm font-medium">{siteConfig.hero.badge}</span>
               </motion.div>
 
-              {/* Heading - Better contrast with background */}
+              {/* Heading */}
               <motion.h1
                 className="font-bold leading-tight mb-8 text-4xl sm:text-5xl lg:text-6xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 style={{ 
-                  color: '#F5F5DC',
-                  textShadow: '3px 3px 6px rgba(139, 69, 19, 0.8), 1px 1px 3px rgba(0, 0, 0, 0.6)'
+                  color: '#ffffff',
+                  textShadow: '3px 3px 6px rgba(236, 72, 153, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.4)'
                 }}
               >
                 <strong>Peace of Mind</strong> in
@@ -192,10 +209,10 @@ const Hero: React.FC = () => {
                 <span 
                   className="italic"
                   style={{
-                    background: 'linear-gradient(45deg, #FFD700, #FFA500, #FF6347)',
+                    background: 'linear-gradient(45deg, #ec4899, #0ea5e9, #eab308)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    textShadow: '2px 2px 4px rgba(139, 69, 19, 0.8)'
+                    textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6)'
                   }}
                 >
                   Every Scan
@@ -206,15 +223,15 @@ const Hero: React.FC = () => {
                 Safety Assistant
               </motion.h1>
 
-              {/* Subtitle - Enhanced for background */}
+              {/* Subtitle */}
               <motion.p
                 className="text-lg sm:text-xl leading-relaxed mb-12 max-w-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 style={{ 
-                  color: '#F5F5DC',
-                  textShadow: '2px 2px 4px rgba(139, 69, 19, 0.8), 1px 1px 2px rgba(0, 0, 0, 0.5)'
+                  color: '#ffffff',
+                  textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6), 1px 1px 2px rgba(0, 0, 0, 0.3)'
                 }}
               >
                 {siteConfig.hero.subtitle}
@@ -235,19 +252,19 @@ const Hero: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   style={{
-                    backgroundColor: '#F5F5DC',
-                    color: '#8B4513',
-                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
+                    backgroundColor: '#ec4899',
+                    color: '#ffffff',
+                    boxShadow: '0 4px 15px rgba(236, 72, 153, 0.3)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#FFFAF0'
-                    e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)'
+                    e.currentTarget.style.backgroundColor = '#db2777';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(236, 72, 153, 0.4)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#F5F5DC'
-                    e.currentTarget.style.transform = 'translateY(0px)'
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)'
+                    e.currentTarget.style.backgroundColor = '#ec4899';
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(236, 72, 153, 0.3)';
                   }}
                 >
                   <Shield className="w-5 h-5 mr-3" />
@@ -260,18 +277,18 @@ const Hero: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   style={{
-                    border: '2px solid #DEB887',
-                    color: '#F5F5DC',
-                    backgroundColor: 'rgba(222, 184, 135, 0.1)',
+                    border: '2px solid #0ea5e9',
+                    color: '#ffffff',
+                    backgroundColor: 'rgba(14, 165, 233, 0.1)',
                     backdropFilter: 'blur(10px)'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#DEB887'
-                    e.currentTarget.style.color = '#8B4513'
+                    e.currentTarget.style.backgroundColor = '#0ea5e9';
+                    e.currentTarget.style.color = '#ffffff';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(222, 184, 135, 0.1)'
-                    e.currentTarget.style.color = '#F5F5DC'
+                    e.currentTarget.style.backgroundColor = 'rgba(14, 165, 233, 0.1)';
+                    e.currentTarget.style.color = '#ffffff';
                   }}
                 >
                   <Play className="w-5 h-5 mr-3" />
@@ -279,7 +296,7 @@ const Hero: React.FC = () => {
                 </motion.a>
               </motion.div>
 
-              {/* Stats - Enhanced for background */}
+              {/* Stats */}
               <motion.div
                 className="grid grid-cols-3 gap-8"
                 initial={{ opacity: 0, y: 20 }}
@@ -291,13 +308,13 @@ const Hero: React.FC = () => {
                     <div className="flex items-center justify-center mb-2">
                       <stat.icon 
                         className="w-6 h-6 mr-2" 
-                        style={{ color: '#FFD700' }}
+                        style={{ color: '#eab308' }}
                       />
                       <span 
                         className="text-2xl md:text-3xl font-bold"
                         style={{ 
-                          color: '#F5F5DC',
-                          textShadow: '3px 3px 6px rgba(139, 69, 19, 0.8), 1px 1px 3px rgba(0, 0, 0, 0.6)'
+                          color: '#ffffff',
+                          textShadow: '3px 3px 6px rgba(236, 72, 153, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.4)'
                         }}
                       >
                         {stat.value}
@@ -306,8 +323,8 @@ const Hero: React.FC = () => {
                     <p 
                       className="text-sm"
                       style={{ 
-                        color: '#F5F5DC',
-                        textShadow: '2px 2px 4px rgba(139, 69, 19, 0.8), 1px 1px 2px rgba(0, 0, 0, 0.5)'
+                        color: '#ffffff',
+                        textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6), 1px 1px 2px rgba(0, 0, 0, 0.3)'
                       }}
                     >
                       {stat.label}
@@ -347,32 +364,30 @@ const Hero: React.FC = () => {
                         ease: "easeInOut"
                       }}
                       style={{
-                        filter: 'drop-shadow(0 10px 20px rgba(139, 69, 19, 0.3)) drop-shadow(0 6px 6px rgba(0, 0, 0, 0.2))'
+                        filter: 'drop-shadow(0 10px 20px rgba(236, 72, 153, 0.3)) drop-shadow(0 6px 6px rgba(14, 165, 233, 0.2))'
                       }}
                     />
                     
-                    {/* Enhanced Glow Effect */}
                     <div 
                       className="absolute inset-0 rounded-3xl blur-xl"
                       style={{
-                        background: 'linear-gradient(to top, rgba(222, 184, 135, 0.2), transparent)'
+                        background: 'linear-gradient(to top, rgba(236, 72, 153, 0.2), transparent)'
                       }}
                     ></div>
                   </motion.div>
                 ))}
               </div>
               
-              {/* Enhanced Background Decoration */}
               <div 
                 className="absolute -inset-10 rounded-full blur-3xl"
                 style={{
-                  background: 'radial-gradient(circle, rgba(222, 184, 135, 0.1), transparent)'
+                  background: 'radial-gradient(circle, rgba(236, 72, 153, 0.1), transparent)'
                 }}
               ></div>
             </motion.div>
           </div>
           
-          {/* Scroll Indicator - Enhanced */}
+          {/* Scroll Indicator */}
           <motion.div
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             initial={{ opacity: 0 }}
@@ -384,8 +399,8 @@ const Hero: React.FC = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="flex flex-col items-center"
               style={{ 
-                color: '#F5F5DC',
-                textShadow: '2px 2px 4px rgba(139, 69, 19, 0.8), 1px 1px 2px rgba(0, 0, 0, 0.5)'
+                color: '#ffffff',
+                textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6), 1px 1px 2px rgba(0, 0, 0, 0.3)'
               }}
             >
               <span className="text-sm mb-2">Scroll to explore</span>

@@ -59,27 +59,19 @@ const Home: React.FC = () => {
         </script>
       </Helmet>
       
-      <div className="min-h-screen bg-white">
-        {/* Hero Section with Video Background */}
+      <div style={{ margin: 0, padding: 0, width: '100%', minHeight: '100vh' }}>
+        {/* Hero Section - Full width with video background */}
         <Hero />
         
-        {/* Features Section */}
-        <Features />
-        
-        {/* How It Works Section - NEW! */}
-        <HowItWorks />
-        
-        {/* Tools Section */}
-        <ToolsSection />
-        
-        {/* Statistics Section */}
-        <Statistics />
-        
-        {/* Testimonials Section */}
-        <Testimonials />
-        
-        {/* FAQ Section */}
-        <FAQ />
+        {/* All other sections with pregnancy-themed gradients and proper containers */}
+        <div style={{ background: 'linear-gradient(to bottom right, #fdf2f8, #ffffff, #f0f9ff)' }}>
+          <Features />
+          <HowItWorks />
+          <ToolsSection />
+          <Statistics />
+          <Testimonials />
+          <FAQ />
+        </div>
       </div>
     </>
   )

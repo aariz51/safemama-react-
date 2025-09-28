@@ -31,7 +31,7 @@ const HowItWorks: React.FC = () => {
   ]
 
   return (
-    <section id="how-it-works" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="how-it-works" className="py-20 bg-gradient-to-br from-pink-50 via-white to-yellow-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div 
@@ -41,8 +41,11 @@ const HowItWorks: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <span className="inline-block px-4 py-2 bg-secondary-100 text-secondary-600 rounded-full text-sm font-medium mb-4">
+            Simple & Easy
+          </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            How SafeMama Works
+            How <span className="text-gradient">SafeMama</span> Works
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Experience the power of AI-driven pregnancy safety in just seconds. 
@@ -59,7 +62,7 @@ const HowItWorks: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div className="relative bg-white rounded-2xl pregnancy-shadow overflow-hidden">
               <div className="aspect-video">
                 <iframe
                   src="https://www.youtube.com/embed/ZN1taUwYjBk?autoplay=1&mute=1&controls=1&showinfo=0&rel=0&modestbranding=1&loop=1&playlist=ZN1taUwYjBk"
@@ -71,7 +74,7 @@ const HowItWorks: React.FC = () => {
               </div>
               
               {/* Video Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-500/20 to-transparent pointer-events-none">
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center justify-between">
                     <div className="text-white">
@@ -79,7 +82,7 @@ const HowItWorks: React.FC = () => {
                       <p className="text-white/80 text-sm">See how easy pregnancy safety can be</p>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
                       <span className="text-white text-xs font-medium">LIVE DEMO</span>
                     </div>
                   </div>
@@ -90,7 +93,7 @@ const HowItWorks: React.FC = () => {
             {/* Decorative Elements */}
             <div className="absolute -inset-4 bg-gradient-to-r from-primary-400 to-secondary-400 rounded-2xl opacity-20 blur-xl"></div>
             <motion.div 
-              className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full opacity-20"
+              className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r from-accent-400 to-primary-400 rounded-full opacity-20"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             />
@@ -115,11 +118,11 @@ const HowItWorks: React.FC = () => {
               >
                 <div className="flex-shrink-0">
                   <div className="relative">
-                    <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center">
+                    <div className="w-16 h-16 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center pregnancy-glow">
                       <step.icon className="w-8 h-8 text-white" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center">
-                      <span className="text-xs font-bold text-gray-900">{step.number}</span>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-accent-400 rounded-full flex items-center justify-center">
+                      <span className="text-xs font-bold text-white">{step.number}</span>
                     </div>
                   </div>
                 </div>
@@ -143,7 +146,7 @@ const HowItWorks: React.FC = () => {
                 href="https://dub.sh/safemama"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 pregnancy-glow"
               >
                 <Scan className="w-5 h-5 mr-3" />
                 Try SafeMama Now - It's Free!
@@ -167,7 +170,7 @@ const HowItWorks: React.FC = () => {
             { value: "10,000+", label: "Daily Scans" }
           ].map((stat, index) => (
             <div key={stat.label} className="text-center">
-              <div className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent mb-2">{stat.value}</div>
               <div className="text-gray-600 text-sm">{stat.label}</div>
             </div>
           ))}

@@ -94,7 +94,7 @@ const FAQ: React.FC = () => {
   }
   
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gradient-to-br from-pink-50 via-white to-blue-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -130,7 +130,7 @@ const FAQ: React.FC = () => {
             >
               {/* Category Header */}
               <div className="flex items-center mb-8">
-                <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl mr-4">
+                <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl mr-4 pregnancy-glow">
                   <category.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">
@@ -147,11 +147,11 @@ const FAQ: React.FC = () => {
                   return (
                     <div
                       key={questionIndex}
-                      className="bg-gray-50 rounded-xl overflow-hidden border border-gray-100"
+                      className="bg-white rounded-xl overflow-hidden pregnancy-shadow pregnancy-border"
                     >
                       <button
                         onClick={() => toggleFAQ(categoryIndex, questionIndex)}
-                        className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200 focus:outline-none focus:bg-gray-100"
+                        className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-primary-50 transition-colors duration-200 focus:outline-none focus:bg-primary-50"
                       >
                         <span className="font-semibold text-gray-900 text-lg pr-8">
                           {faq.question}
@@ -202,7 +202,7 @@ const FAQ: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-3xl p-12 border border-primary-100">
+          <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-3xl p-12 pregnancy-border">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Still have questions?
             </h3>
@@ -214,7 +214,7 @@ const FAQ: React.FC = () => {
                 href="mailto:support@safemama.co"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors duration-200"
+                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold rounded-xl hover:from-primary-600 hover:to-primary-700 transition-all duration-200 pregnancy-glow"
               >
                 Email Support
               </motion.a>
@@ -222,7 +222,7 @@ const FAQ: React.FC = () => {
                 href="#live-chat"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-600 text-primary-600 font-semibold rounded-xl hover:bg-primary-600 hover:text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-600 font-semibold rounded-xl hover:bg-primary-500 hover:text-white transition-all duration-200"
               >
                 Live Chat
               </motion.a>

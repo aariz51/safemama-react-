@@ -20,42 +20,42 @@ const Features: React.FC = () => {
       icon: Scan,
       title: 'AI-Powered Scanning',
       description: 'Scan any food, medicine, or product with your camera. Get instant AI-powered safety analysis tailored for pregnancy.',
-      gradient: 'from-blue-500 to-purple-600',
+      gradient: 'from-primary-500 to-secondary-500',
       image: '/images/css/images/app-screenshots/screen_scan-view.png'
     },
     {
       icon: Brain,
       title: 'Smart Safety Analysis',
       description: 'Advanced AI analyzes ingredients and provides clear safety recommendations with detailed explanations.',
-      gradient: 'from-purple-500 to-pink-600',
+      gradient: 'from-secondary-500 to-accent-500',
       image: '/images/css/images/app-screenshots/screen_results-safe.png'
     },
     {
       icon: MessageCircle,
       title: 'Ask an Expert',
       description: 'Get personalized answers to your pregnancy questions from our AI-powered expert system.',
-      gradient: 'from-pink-500 to-red-600',
+      gradient: 'from-accent-500 to-success-500',
       image: '/images/css/images/app-screenshots/screen_guide.png'
     },
     {
       icon: BookOpen,
       title: 'Comprehensive Guides',
       description: 'Access detailed pregnancy guides, nutrition tips, and safety information curated by experts.',
-      gradient: 'from-green-500 to-teal-600',
+      gradient: 'from-success-500 to-primary-500',
       image: '/images/css/images/app-screenshots/screen_dashboard.png'
     },
     {
       icon: Search,
       title: 'Manual Search',
       description: 'Search for specific foods, medicines, or ingredients when scanning isn\'t possible.',
-      gradient: 'from-yellow-500 to-orange-600',
+      gradient: 'from-primary-600 to-secondary-600',
       image: '/images/css/images/app-screenshots/screen_history.png'
     },
     {
       icon: Clock,
       title: 'Scan History',
       description: 'Keep track of all your scans with detailed history and bookmarking for easy reference.',
-      gradient: 'from-indigo-500 to-blue-600',
+      gradient: 'from-secondary-600 to-accent-600',
       image: '/images/css/images/app-screenshots/screen_history.png'
     }
   ]
@@ -84,7 +84,7 @@ const Features: React.FC = () => {
   ]
   
   return (
-    <section id="features" className="py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section id="features" className="py-20 bg-gradient-to-br from-pink-50 via-white to-blue-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -117,7 +117,7 @@ const Features: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="h-full group cursor-pointer">
+              <Card variant="pregnancy" className="h-full group cursor-pointer">
                 {/* Icon */}
                 <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className="w-8 h-8 text-white" />
@@ -139,7 +139,7 @@ const Features: React.FC = () => {
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                     whileHover={{ scale: 1.02 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </Card>
             </motion.div>
@@ -168,7 +168,7 @@ const Features: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300 pregnancy-glow">
                   <benefit.icon className="w-10 h-10 text-white" />
                 </div>
                 
@@ -185,7 +185,7 @@ const Features: React.FC = () => {
         
         {/* CTA Section */}
         <motion.div
-          className="text-center bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl p-12 text-white"
+          className="text-center bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-3xl p-12 text-white pregnancy-shadow"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}

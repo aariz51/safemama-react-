@@ -6,79 +6,59 @@ import Card from '../ui/Card'
 const Testimonials: React.FC = () => {
   const testimonials = [
     {
-      id: 1,
-      name: 'Sarah Johnson',
-      role: 'First-time Mom',
-      location: 'New York, USA',
-      avatar: '/images/testimonials/sarah.jpg',
+      name: "Sarah Johnson",
+      location: "New York, USA",
       rating: 5,
-      text: 'SafeMama gave me the confidence I needed during my pregnancy. Every time I had a question about food safety, I could get instant answers. The AI-powered scanning is incredibly accurate and the explanations are so detailed.',
-      highlight: 'Gave me confidence I needed',
-      weeks: '32 weeks pregnant'
+      text: "SafeMama gave me the confidence I needed during my pregnancy. The AI scanning feature is incredibly accurate and saved me from worrying about every single ingredient. I've recommended it to all my pregnant friends!",
+      avatar: "SJ",
+      trimester: "2nd Trimester"
     },
     {
-      id: 2,
-      name: 'Emma Thompson',
-      role: 'Mother of Two',
-      location: 'London, UK',
-      avatar: '/images/testimonials/emma.jpg',
+      name: "Emily Chen",
+      location: "London, UK", 
       rating: 5,
-      text: 'As a working mom, SafeMama was a lifesaver. I could quickly scan products while grocery shopping and get immediate feedback. The app helped me make better food choices for both pregnancies.',
-      highlight: 'A lifesaver for working moms',
-      weeks: 'New mom'
+      text: "As a first-time mom, I was constantly anxious about what I could and couldn't eat. SafeMama's instant scanning gave me peace of mind. The expert Q&A feature is absolutely brilliant - I got answers to questions I didn't even know I had.",
+      avatar: "EC",
+      trimester: "3rd Trimester"
     },
     {
-      id: 3,
-      name: 'Priya Patel',
-      role: 'Nutrition Enthusiast',
-      location: 'Mumbai, India',
-      avatar: '/images/testimonials/priya.jpg',
+      name: "Maria Rodriguez",
+      location: "Toronto, Canada",
       rating: 5,
-      text: 'I love how comprehensive SafeMama is. Not just scanning, but also the detailed guides and expert Q&A feature. It\'s like having a pregnancy nutritionist in your pocket 24/7.',
-      highlight: 'Like having a nutritionist in your pocket',
-      weeks: '28 weeks pregnant'
+      text: "The medication scanner feature saved me multiple trips to the doctor. SafeMama helped me understand which over-the-counter medicines were safe during my pregnancy. It's like having a pregnancy expert in your pocket!",
+      avatar: "MR",
+      trimester: "1st Trimester"
     },
     {
-      id: 4,
-      name: 'Jessica Williams',
-      role: 'Health-conscious Mom',
-      location: 'Sydney, Australia',
-      avatar: '/images/testimonials/jessica.jpg',
+      name: "Priya Patel",
+      location: "Melbourne, Australia",
       rating: 5,
-      text: 'The medication safety feature was incredibly helpful. I could check if my prescriptions were safe during pregnancy and get detailed information to discuss with my doctor.',
-      highlight: 'Medication safety feature was incredible',
-      weeks: 'New mom'
+      text: "I love how SafeMama considers cultural foods too. As someone who eats a lot of Indian cuisine, it was wonderful to see the app understand spices and traditional foods. The recommendations were spot-on every time.",
+      avatar: "PP",
+      trimester: "2nd Trimester"
     },
     {
-      id: 5,
-      name: 'Maria Garcia',
-      role: 'Expecting Mother',
-      location: 'Barcelona, Spain',
-      avatar: '/images/testimonials/maria.jpg',
+      name: "Lisa Thompson",
+      location: "Dublin, Ireland",
       rating: 5,
-      text: 'SafeMama helped me navigate the confusing world of pregnancy nutrition. The cultural food recommendations were spot-on, and I loved that it understood my dietary preferences.',
-      highlight: 'Helped navigate pregnancy nutrition',
-      weeks: '24 weeks pregnant'
+      text: "SafeMama became my pregnancy companion from day one. The scan history feature helped me track what I'd checked before, and sharing results with my doctor made our consultations much more productive. Highly recommended!",
+      avatar: "LT",
+      trimester: "3rd Trimester"
     },
     {
-      id: 6,
-      name: 'Lisa Chen',
-      role: 'Tech Professional',
-      location: 'Toronto, Canada',
-      avatar: '/images/testimonials/lisa.jpg',
+      name: "Anna Weber",
+      location: "Berlin, Germany",
       rating: 5,
-      text: 'The user interface is beautiful and intuitive. Even my husband started using it to help with grocery shopping. We both feel more confident about our food choices now.',
-      highlight: 'Beautiful and intuitive interface',
-      weeks: '16 weeks pregnant'
+      text: "The multilingual support and global product recognition impressed me. SafeMama understood European products perfectly and provided accurate safety information. It's truly a global solution for expecting mothers.",
+      avatar: "AW",
+      trimester: "1st Trimester"
     }
   ]
-  
+
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-pattern opacity-5"></div>
-      <div className="absolute top-20 left-20 w-32 h-32 bg-primary-100 rounded-full opacity-20 animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-24 h-24 bg-secondary-100 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-pink-50 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-pregnancy-dots"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -90,153 +70,150 @@ const Testimonials: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="inline-block px-4 py-2 bg-primary-100 text-primary-600 rounded-full text-sm font-medium mb-4">
-            What Mothers Say
+            What Our Mothers Say
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Loved by <span className="text-gradient">50,000+</span>
-            <br />Expecting Mothers
+            Trusted by <span className="text-gradient">50,000+ Mothers</span>
+            <br />Worldwide
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Real stories from real mothers who trust SafeMama for their pregnancy safety decisions.
+            Real stories from expecting mothers who found peace of mind with SafeMama. 
+            Join our growing community of confident, informed parents.
           </p>
         </motion.div>
-        
-        {/* Overall Rating */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="inline-flex items-center justify-center bg-white rounded-2xl px-8 py-6 shadow-lg border border-gray-100">
-            <div className="flex items-center space-x-4">
-              <div className="flex space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <div className="text-left">
-                <div className="text-2xl font-bold text-gray-900">4.8 out of 5</div>
-                <div className="text-gray-600">Based on 10,000+ reviews</div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        
+
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={testimonial.id}
+              key={testimonial.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="h-full relative group hover:shadow-xl">
+              <Card variant="pregnancy" className="h-full p-8 group hover:shadow-2xl">
                 {/* Quote Icon */}
-                <div className="absolute top-6 right-6 w-8 h-8 text-primary-200 opacity-50">
-                  <Quote className="w-full h-full fill-current" />
+                <div className="flex items-center justify-between mb-6">
+                  <Quote className="w-10 h-10 text-primary-400 opacity-50" />
+                  <div className="text-right">
+                    <div className="text-sm font-medium text-primary-600 bg-primary-100 px-3 py-1 rounded-full">
+                      {testimonial.trimester}
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Rating */}
-                <div className="flex items-center space-x-1 mb-4">
+                <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="w-5 h-5 text-accent-400 fill-current" />
                   ))}
                 </div>
                 
                 {/* Testimonial Text */}
-                <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed mb-6 text-base">
                   "{testimonial.text}"
-                </blockquote>
+                </p>
                 
-                {/* Highlight */}
-                <div className="bg-primary-50 rounded-lg p-3 mb-6">
-                  <p className="text-primary-700 font-medium text-sm">
-                    💜 "{testimonial.highlight}"
-                  </p>
-                </div>
-                
-                {/* User Info */}
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center">
+                {/* Author */}
+                <div className="flex items-center mt-auto">
+                  <div className="w-12 h-12 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full flex items-center justify-center mr-4 pregnancy-glow">
                     <span className="text-white font-semibold text-lg">
-                      {testimonial.name.charAt(0)}
+                      {testimonial.avatar}
                     </span>
                   </div>
-                  
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-900">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {testimonial.role} • {testimonial.location}
-                    </div>
-                    <div className="text-xs text-primary-600 font-medium mt-1">
-                      {testimonial.weeks}
-                    </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-gray-500 text-sm">{testimonial.location}</div>
                   </div>
                 </div>
-                
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
               </Card>
             </motion.div>
           ))}
         </div>
-        
-        {/* CTA Section */}
+
+        {/* Trust Stats */}
         <motion.div
-          className="mt-16 text-center"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="bg-white rounded-3xl p-12 shadow-lg border border-gray-100 max-w-4xl mx-auto">
-            <div className="flex items-center justify-center mb-6">
-              <Heart className="w-8 h-8 text-red-500 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-900">
-                Join Our Growing Community
-              </h3>
+          {[
+            { value: "4.8★", label: "Average Rating" },
+            { value: "99%", label: "Would Recommend" },
+            { value: "150+", label: "Countries" },
+            { value: "24/7", label: "Support" }
+          ].map((stat, index) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-3xl font-bold bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent mb-2">
+                {stat.value}
+              </div>
+              <div className="text-gray-600 text-sm font-medium">{stat.label}</div>
             </div>
+          ))}
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="text-center bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 rounded-3xl p-12 text-white pregnancy-shadow"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 1 }}
+        >
+          <div className="flex items-center justify-center mb-6">
+            <Heart className="w-12 h-12 text-white mr-4" />
+            <h3 className="text-2xl font-bold text-white">
+              Join Our Growing Community
+            </h3>
+          </div>
+          
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Be part of a supportive community of expecting mothers who prioritize 
+            safety and make informed decisions together.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <motion.a
+              href="https://apps.apple.com/us/app/safemama-pregnancy-app/id6748413103"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
+              <img
+                src="/images/badges/app-store-coming-soon.png"
+                alt="Download on App Store"
+                className="h-14 w-auto"
+              />
+            </motion.a>
             
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Be part of a supportive community of expecting mothers who prioritize 
-              safety and make informed decisions together.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-              <motion.a
-                href="https://apps.apple.com/us/app/safemama-pregnancy-app/id6748413103"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block"
-              >
-                <img
-                  src="/images/badges/app-store-coming-soon.png"
-                  alt="Download on App Store"
-                  className="h-14 w-auto"
-                />
-              </motion.a>
-              
-              <motion.a
-                href="https://play.google.com/store/apps/details?id=com.safemama.app"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-block"
-              >
-                <img
-                  src="/images/badges/google-play-coming-soon.png"
-                  alt="Get it on Google Play"
-                  className="h-14 w-auto"
-                />
-              </motion.a>
-            </div>
+            <motion.a
+              href="https://play.google.com/store/apps/details?id=com.safemama.app"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block"
+            >
+              <img
+                src="/images/badges/google-play-coming-soon.png"
+                alt="Get it on Google Play"
+                className="h-14 w-auto"
+              />
+            </motion.a>
           </div>
         </motion.div>
+      </div>
+      
+      {/* Floating Hearts */}
+      <div className="absolute top-20 left-10 w-6 h-6 text-primary-300 opacity-20 animate-gentle-float">
+        <Heart className="w-full h-full fill-current" />
+      </div>
+      <div className="absolute bottom-20 right-20 w-8 h-8 text-accent-300 opacity-20 animate-gentle-float" style={{ animationDelay: '2s' }}>
+        <Heart className="w-full h-full fill-current" />
+      </div>
+      <div className="absolute top-1/2 right-10 w-4 h-4 text-secondary-300 opacity-20 animate-gentle-float" style={{ animationDelay: '4s' }}>
+        <Heart className="w-full h-full fill-current" />
       </div>
     </section>
   )

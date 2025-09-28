@@ -61,9 +61,12 @@ const Footer: React.FC = () => {
   ]
   
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+    <footer className="bg-gradient-to-br from-gray-900 via-primary-900/10 to-gray-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-pregnancy-dots opacity-5"></div>
+      
       {/* Stats Section */}
-      <div className="border-b border-gray-700">
+      <div className="border-b border-gray-700/50 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -87,7 +90,7 @@ const Footer: React.FC = () => {
       </div>
       
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
@@ -97,7 +100,9 @@ const Footer: React.FC = () => {
                 alt="SafeMama Logo"
                 className="h-12 w-auto"
               />
-              <span className="text-2xl font-bold text-gradient">SafeMama</span>
+              <span className="text-2xl font-bold bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent">
+                SafeMama
+              </span>
             </Link>
             
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
@@ -147,7 +152,7 @@ const Footer: React.FC = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -163,7 +168,7 @@ const Footer: React.FC = () => {
                   <li key={link.name}>
                     <Link
                       to={link.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200"
                     >
                       {link.name}
                     </Link>
@@ -179,7 +184,7 @@ const Footer: React.FC = () => {
                   <li key={link.name}>
                     <Link
                       to={link.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200"
                     >
                       {link.name}
                     </Link>
@@ -195,7 +200,7 @@ const Footer: React.FC = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-gray-300 hover:text-white transition-colors duration-200"
+                      className="text-gray-300 hover:text-primary-400 transition-colors duration-200"
                     >
                       {link.name}
                     </a>
@@ -208,7 +213,7 @@ const Footer: React.FC = () => {
       </div>
       
       {/* Download Section */}
-      <div className="border-t border-gray-700">
+      <div className="border-t border-gray-700/50 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">Start Your Safe Pregnancy Journey Today</h3>
@@ -250,7 +255,7 @@ const Footer: React.FC = () => {
       </div>
       
       {/* Bottom Bar */}
-      <div className="border-t border-gray-700">
+      <div className="border-t border-gray-700/50 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="text-gray-300 text-sm">
@@ -258,9 +263,9 @@ const Footer: React.FC = () => {
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-gray-300">
-              <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
-              <a href="#cookies" className="hover:text-white transition-colors">Cookie Policy</a>
+              <a href="#privacy" className="hover:text-primary-400 transition-colors">Privacy Policy</a>
+              <a href="#terms" className="hover:text-primary-400 transition-colors">Terms of Service</a>
+              <a href="#cookies" className="hover:text-primary-400 transition-colors">Cookie Policy</a>
             </div>
           </div>
         </div>

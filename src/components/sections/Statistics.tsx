@@ -12,7 +12,7 @@ const Statistics: React.FC = () => {
       suffix: '+',
       label: 'Happy Mothers',
       description: 'Trusted by expecting mothers worldwide',
-      gradient: 'from-blue-500 to-purple-600'
+      gradient: 'from-primary-500 to-secondary-500'
     },
     {
       icon: Star,
@@ -20,7 +20,7 @@ const Statistics: React.FC = () => {
       suffix: '★',
       label: 'App Store Rating',
       description: 'Consistently high ratings across platforms',
-      gradient: 'from-yellow-500 to-orange-600'
+      gradient: 'from-accent-500 to-primary-500'
     },
     {
       icon: Shield,
@@ -28,7 +28,7 @@ const Statistics: React.FC = () => {
       suffix: '+',
       label: 'Daily Scans',
       description: 'Safe scans performed every day',
-      gradient: 'from-green-500 to-teal-600'
+      gradient: 'from-success-500 to-secondary-500'
     },
     {
       icon: BookOpen,
@@ -36,7 +36,7 @@ const Statistics: React.FC = () => {
       suffix: '+',
       label: 'Safety Guides',
       description: 'Comprehensive pregnancy safety resources',
-      gradient: 'from-purple-500 to-pink-600'
+      gradient: 'from-secondary-500 to-accent-500'
     },
     {
       icon: Heart,
@@ -44,7 +44,7 @@ const Statistics: React.FC = () => {
       suffix: '%',
       label: 'User Satisfaction',
       description: 'Users report feeling more confident',
-      gradient: 'from-pink-500 to-red-600'
+      gradient: 'from-primary-500 to-accent-500'
     },
     {
       icon: Globe,
@@ -52,7 +52,7 @@ const Statistics: React.FC = () => {
       suffix: '+',
       label: 'Countries Served',
       description: 'Global reach across all continents',
-      gradient: 'from-indigo-500 to-blue-600'
+      gradient: 'from-secondary-500 to-success-500'
     },
     {
       icon: Award,
@@ -60,7 +60,7 @@ const Statistics: React.FC = () => {
       suffix: '+',
       label: 'Awards Won',
       description: 'Recognition from health & tech industry',
-      gradient: 'from-cyan-500 to-blue-600'
+      gradient: 'from-accent-500 to-secondary-500'
     },
     {
       icon: Zap,
@@ -68,7 +68,7 @@ const Statistics: React.FC = () => {
       suffix: 's',
       label: 'Average Scan Time',
       description: 'Lightning-fast AI analysis',
-      gradient: 'from-orange-500 to-red-600'
+      gradient: 'from-primary-500 to-success-500'
     }
   ]
   
@@ -103,9 +103,9 @@ const Statistics: React.FC = () => {
   }
   
   return (
-    <section className="py-20 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-pink-50 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-dots opacity-5"></div>
+      <div className="absolute inset-0 bg-pregnancy-dots"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -144,9 +144,9 @@ const Statistics: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 h-full">
+                <div className="bg-white rounded-2xl p-8 pregnancy-shadow hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 pregnancy-border h-full">
                   {/* Icon */}
-                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${stat.gradient} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${stat.gradient} rounded-2xl mb-6 group-hover:scale-110 transition-transform duration-300 pregnancy-glow`}>
                     <stat.icon className="w-8 h-8 text-white" />
                   </div>
                   
@@ -197,7 +197,7 @@ const Statistics: React.FC = () => {
             ].map((country, index) => (
               <motion.span
                 key={country}
-                className="text-gray-500 font-medium"
+                className="text-gray-500 font-medium hover:text-primary-600 transition-colors cursor-pointer"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -211,9 +211,9 @@ const Statistics: React.FC = () => {
       </div>
       
       {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary-100 rounded-full opacity-50 animate-float"></div>
-      <div className="absolute bottom-20 right-20 w-16 h-16 bg-secondary-100 rounded-full opacity-50 animate-float" style={{ animationDelay: '2s' }}></div>
-      <div className="absolute top-1/2 right-10 w-12 h-12 bg-yellow-100 rounded-full opacity-50 animate-float" style={{ animationDelay: '4s' }}></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-primary-100 rounded-full opacity-50 animate-gentle-float"></div>
+      <div className="absolute bottom-20 right-20 w-16 h-16 bg-secondary-100 rounded-full opacity-50 animate-gentle-float" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-1/2 right-10 w-12 h-12 bg-accent-100 rounded-full opacity-50 animate-gentle-float" style={{ animationDelay: '4s' }}></div>
     </section>
   )
 }
