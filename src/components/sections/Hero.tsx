@@ -8,15 +8,15 @@ import { motion } from 'framer-motion'
 import { Smartphone, Star, Users, Shield, Play, ArrowRight } from 'lucide-react'
 import Button from '../ui/Button'
 
-// Configuration - UPDATED with correct video URL
+// Configuration - UPDATED with better, simpler text
 const siteConfig = {
   videoUrl: "https://res.cloudinary.com/dclcda1je/video/upload/v1756622668/Firefly_Gentle_floating_motion_of_the_soft_orbs_and_elements_subtle_gradient_shifts_peaceful_and_c_1_rpiwgj.mp4",
   hero: {
     badge: "Trusted by 50,000+ Expecting Mothers",
-    title: "Peace of Mind in Every Scan - Your AI Pregnancy Safety Assistant",
-    subtitle: "Scan any food, fruit, vegetable, or medicine with AI-powered safety analysis. Get instant guidance tailored for you and your baby's wellbeing.",
+    title: "Your AI Pregnancy Safety Companion", // ✅ SIMPLIFIED TITLE
+    subtitle: "Instantly check if food, medicine, and products are safe during pregnancy. Get personalized recommendations you can trust.", // ✅ BETTER SUBTITLE
     cta: { 
-      primary: { label: "Start Your Safe Journey", href: "https://dub.sh/safemama" },
+      primary: { label: "Get SafeMama Free", href: "https://dub.sh/safemama" }, // ✅ BETTER CTA
       secondary: { label: "Watch Demo", href: "#how-it-works" }
     }
   }
@@ -25,6 +25,7 @@ const siteConfig = {
 const Hero: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  // ✅ KEEPING ALL 3 ORIGINAL IMAGES
   const mockupImages = [
     {
       src: '/images/mockups/safemama-scan-feature.png',
@@ -92,8 +93,8 @@ const Hero: React.FC = () => {
       style={{
         position: 'relative',
         width: '100vw',
-        height: '100vh',
-        minHeight: '100vh',
+        height: '110vh', // Increased height to prevent cut-off
+        minHeight: '110vh',
         margin: 0,
         padding: 0,
         overflow: 'hidden',
@@ -153,7 +154,7 @@ const Hero: React.FC = () => {
         }}
       />
 
-      {/* Hero Content - Centered with proper container */}
+      {/* Hero Content - Fixed positioning and spacing */}
       <div 
         style={{
           position: 'relative',
@@ -164,19 +165,21 @@ const Hero: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           padding: 0,
-          margin: 0
+          margin: 0,
+          paddingTop: '80px', // Space for header
+          paddingBottom: '60px' // Space for stats
         }}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side Text Content */}
+            {/* Left Side Text Content - IMPROVED */}
             <motion.div
               className="text-center lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Badge */}
+              {/* Badge - Fixed positioning and visibility */}
               <motion.div
                 className="inline-flex items-center px-4 py-2 rounded-full mb-8 border"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -186,14 +189,16 @@ const Hero: React.FC = () => {
                   backgroundColor: 'rgba(236, 72, 153, 0.15)',
                   borderColor: 'rgba(236, 72, 153, 0.3)',
                   backdropFilter: 'blur(10px)',
-                  color: '#ffffff'
+                  color: '#ffffff',
+                  position: 'relative',
+                  zIndex: 20
                 }}
               >
                 <Shield className="w-4 h-4 mr-2" style={{ color: '#ec4899' }} />
                 <span className="text-sm font-medium">{siteConfig.hero.badge}</span>
               </motion.div>
 
-              {/* Heading */}
+              {/* Heading - SIMPLIFIED AND BETTER */}
               <motion.h1
                 className="font-bold leading-tight mb-8 text-4xl sm:text-5xl lg:text-6xl"
                 initial={{ opacity: 0, y: 20 }}
@@ -201,37 +206,21 @@ const Hero: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 style={{ 
                   color: '#ffffff',
-                  textShadow: '3px 3px 6px rgba(236, 72, 153, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.4)'
+                  textShadow: '3px 3px 6px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(236, 72, 153, 0.9)' // ✅ STRONGER SHADOW
                 }}
               >
-                <strong>Peace of Mind</strong> in
-                <br />
-                <span 
-                  className="italic"
-                  style={{
-                    background: 'linear-gradient(45deg, #ec4899, #0ea5e9, #eab308)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6)'
-                  }}
-                >
-                  Every Scan
-                </span> - Your
-                <br />
-                AI Pregnancy
-                <br />
-                Safety Assistant
+                {siteConfig.hero.title}
               </motion.h1>
 
-              {/* Subtitle */}
+              {/* Subtitle - IMPROVED */}
               <motion.p
-                className="text-lg sm:text-xl leading-relaxed mb-12 max-w-xl"
+                className="text-lg sm:text-xl leading-relaxed mb-10 max-w-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 style={{ 
                   color: '#ffffff',
-                  textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6), 1px 1px 2px rgba(0, 0, 0, 0.3)'
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 1px 1px 2px rgba(236, 72, 153, 0.9)' // ✅ STRONGER SHADOW
                 }}
               >
                 {siteConfig.hero.subtitle}
@@ -239,7 +228,7 @@ const Hero: React.FC = () => {
 
               {/* CTA Buttons */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-16"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
@@ -296,16 +285,19 @@ const Hero: React.FC = () => {
                 </motion.a>
               </motion.div>
 
-              {/* Stats */}
+              {/* Stats - Fixed cut-off issue */}
               <motion.div
-                className="grid grid-cols-3 gap-8"
+                className="grid grid-cols-3 gap-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
+                style={{ 
+                  marginBottom: '40px' // Extra space to prevent cut-off
+                }}
               >
                 {stats.map((stat, index) => (
                   <div key={stat.label} className="text-center">
-                    <div className="flex items-center justify-center mb-2">
+                    <div className="flex items-center justify-center mb-3">
                       <stat.icon 
                         className="w-6 h-6 mr-2" 
                         style={{ color: '#eab308' }}
@@ -314,17 +306,18 @@ const Hero: React.FC = () => {
                         className="text-2xl md:text-3xl font-bold"
                         style={{ 
                           color: '#ffffff',
-                          textShadow: '3px 3px 6px rgba(236, 72, 153, 0.6), 1px 1px 3px rgba(0, 0, 0, 0.4)'
+                          textShadow: '3px 3px 6px rgba(0, 0, 0, 0.8), 2px 2px 4px rgba(236, 72, 153, 0.9)' // ✅ STRONGER SHADOW
                         }}
                       >
                         {stat.value}
                       </span>
                     </div>
                     <p 
-                      className="text-sm"
+                      className="text-sm font-medium"
                       style={{ 
                         color: '#ffffff',
-                        textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6), 1px 1px 2px rgba(0, 0, 0, 0.3)'
+                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 1px 1px 2px rgba(236, 72, 153, 0.9)', // ✅ STRONGER SHADOW
+                        minHeight: '20px' // Ensure text has space
                       }}
                     >
                       {stat.label}
@@ -334,7 +327,7 @@ const Hero: React.FC = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Side Phone Mockups */}
+            {/* Right Side Phone Mockups - KEEPING ALL 3 ORIGINAL IMAGES */}
             <motion.div
               className="relative z-10"
               initial={{ opacity: 0, x: 50 }}
@@ -387,9 +380,9 @@ const Hero: React.FC = () => {
             </motion.div>
           </div>
           
-          {/* Scroll Indicator */}
+          {/* Scroll Indicator - Repositioned */}
           <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
@@ -400,7 +393,7 @@ const Hero: React.FC = () => {
               className="flex flex-col items-center"
               style={{ 
                 color: '#ffffff',
-                textShadow: '2px 2px 4px rgba(236, 72, 153, 0.6), 1px 1px 2px rgba(0, 0, 0, 0.3)'
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 1px 1px 2px rgba(236, 72, 153, 0.9)' // ✅ STRONGER SHADOW
               }}
             >
               <span className="text-sm mb-2">Scroll to explore</span>

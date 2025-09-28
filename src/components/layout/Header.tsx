@@ -56,18 +56,17 @@ const Header: React.FC = () => {
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo - Removed image, kept only SafeMama text */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <motion.img
-              src="/images/logo/safemama-logo.png"
-              alt="SafeMama Logo"
-              className="h-10 w-auto"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            />
             <motion.span
-              className="text-2xl font-bold bg-gradient-to-r from-primary-500 via-secondary-500 to-accent-500 bg-clip-text text-transparent"
+              className="text-2xl font-bold"
               whileHover={{ scale: 1.02 }}
+              style={{
+                background: 'linear-gradient(135deg, #ec4899 0%, #0ea5e9 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                color: isScrolled ? 'transparent' : '#ffffff'
+              }}
             >
               SafeMama
             </motion.span>
