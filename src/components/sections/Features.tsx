@@ -56,7 +56,8 @@ const Features: React.FC = () => {
       title: 'Scan History',
       description: 'Keep track of all your scans with detailed history and bookmarking for easy reference.',
       gradient: 'from-secondary-600 to-accent-600',
-      image: '/images/mockups/safemama-history-screen.png' // ❌ CREATE THIS - History screen
+      image: '/images/mockups/safemama-scan-history.png'
+ // ❌ CREATE THIS - History screen
     }
   ]
   
