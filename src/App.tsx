@@ -46,6 +46,8 @@ import SafemamaVsPregnancyPlus from './pages/compare/SafemamaVsPregnancyPlus'
 import SafemamaVsWebMD from './pages/compare/SafemamaVsWebMD'
 import SafemamaVsWhatToExpect from './pages/compare/SafemamaVsWhatToExpect.tsx'
 import SafemamaVsBabycenter from './pages/compare/SafemamaVsBabycenter.tsx'
+import SafemamaVsTheBump from './pages/compare/SafemamaVsTheBump'
+import SafemamaVsGlowNurture from './pages/compare/SafemamaVsGlowNurture'
 
 // Legal Pages
 import PrivacyPolicy from './pages/legal/PrivacyPolicy.tsx'
@@ -104,6 +106,8 @@ const App: React.FC = () => {
           <Route path="compare/safemama-vs-webmd" element={<SafemamaVsWebMD />} />
           <Route path="compare/safemama-vs-what-to-expect" element={<SafemamaVsWhatToExpect />} />
           <Route path="compare/safemama-vs-babycenter" element={<SafemamaVsBabycenter />} />
+          <Route path="compare/safemama-vs-the-bump" element={<SafemamaVsTheBump />} />
+          <Route path="compare/safemama-vs-glow-nurture" element={<SafemamaVsGlowNurture />} />
 
           {/* Legal Routes */}
           <Route path="privacy" element={<PrivacyPolicy />} />

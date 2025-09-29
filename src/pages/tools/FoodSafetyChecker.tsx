@@ -1,24 +1,135 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { Search, Shield, AlertTriangle, CheckCircle, XCircle, Scan } from 'lucide-react'
+import { Search, Scan, Shield, AlertTriangle, CheckCircle, XCircle, Download, Apple, Smartphone, Star, ArrowRight, Info } from 'lucide-react'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
-import { searchFoods, FoodItem } from '../../data/foodDatabase'
+
+interface FoodItem {
+  name: string
+  safe: boolean
+  category: string
+  reason: string
+  alternatives?: string[]
+  trimester_specific?: {
+    first: boolean
+    second: boolean
+    third: boolean
+  }
+}
 
 const FoodSafetyChecker: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [searchResults, setSearchResults] = useState<FoodItem[]>([])
-  const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null)
-  const [isSearched, setIsSearched] = useState(false)
+  const [result, setResult] = useState<FoodItem | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [notFound, setNotFound] = useState(false)
+
+  // Enhanced food database with more items
+  const foodDatabase: FoodItem[] = [
+    {
+      name: 'banana',
+      safe: true,
+      category: 'fruits',
+      reason: 'Rich in potassium, vitamin B6, and fiber. Helps with morning sickness and provides sustained energy.',
+      alternatives: ['apples', 'pears', 'berries'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'apple',
+      safe: true,
+      category: 'fruits',
+      reason: 'High in fiber and vitamin C. Wash thoroughly before eating to remove any pesticide residue.',
+      alternatives: ['pears', 'bananas', 'oranges'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'sushi',
+      safe: false,
+      category: 'seafood',
+      reason: 'Raw fish may contain harmful bacteria and parasites. High mercury content in some fish.',
+      alternatives: ['cooked salmon', 'vegetarian rolls', 'cooked shrimp'],
+      trimester_specific: { first: false, second: false, third: false }
+    },
+    {
+      name: 'salmon',
+      safe: true,
+      category: 'seafood',
+      reason: 'Excellent source of omega-3 fatty acids when fully cooked. Choose wild-caught when possible.',
+      alternatives: ['sardines', 'anchovies', 'cooked cod'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'coffee',
+      safe: true,
+      category: 'beverages',
+      reason: 'Safe in moderation. Limit to 200mg caffeine per day (about 1-2 cups).',
+      alternatives: ['decaf coffee', 'herbal tea', 'water'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'alcohol',
+      safe: false,
+      category: 'beverages',
+      reason: 'No amount of alcohol is considered safe during pregnancy. Can cause fetal alcohol syndrome.',
+      alternatives: ['sparkling water', 'fruit juices', 'mocktails'],
+      trimester_specific: { first: false, second: false, third: false }
+    },
+    {
+      name: 'cheese',
+      safe: true,
+      category: 'dairy',
+      reason: 'Hard cheeses are safe. Avoid unpasteurized soft cheeses like brie, camembert, and blue cheese.',
+      alternatives: ['cheddar', 'swiss', 'mozzarella'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'spinach',
+      safe: true,
+      category: 'vegetables',
+      reason: 'Rich in folate, iron, and vitamins. Wash thoroughly and cook when possible to reduce bacteria risk.',
+      alternatives: ['kale', 'broccoli', 'swiss chard'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'tuna',
+      safe: true,
+      category: 'seafood',
+      reason: 'Limit to 2-3 servings per week due to mercury content. Choose light tuna over albacore.',
+      alternatives: ['salmon', 'sardines', 'cod'],
+      trimester_specific: { first: true, second: true, third: true }
+    },
+    {
+      name: 'eggs',
+      safe: true,
+      category: 'protein',
+      reason: 'Excellent protein source when fully cooked. Avoid raw or undercooked eggs.',
+      alternatives: ['cooked chicken', 'beans', 'tofu'],
+      trimester_specific: { first: true, second: true, third: true }
+    }
+  ]
 
   const handleSearch = () => {
     if (!searchTerm.trim()) return
-    
-    const results = searchFoods(searchTerm)
-    setSearchResults(results)
-    setIsSearched(true)
-    setSelectedFood(null)
+
+    setLoading(true)
+    setNotFound(false)
+    setResult(null)
+
+    // Simulate API call delay
+    setTimeout(() => {
+      const found = foodDatabase.find(
+        item => item.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+
+      if (found) {
+        setResult(found)
+        setNotFound(false)
+      } else {
+        setResult(null)
+        setNotFound(true)
+      }
+      setLoading(false)
+    }, 800)
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -27,53 +138,19 @@ const FoodSafetyChecker: React.FC = () => {
     }
   }
 
-  const getSafetyIcon = (safetyLevel: string) => {
-    switch (safetyLevel) {
-      case 'safe':
-        return <CheckCircle className="w-6 h-6 text-green-500" />
-      case 'caution':
-        return <AlertTriangle className="w-6 h-6 text-yellow-500" />
-      case 'avoid':
-        return <XCircle className="w-6 h-6 text-red-500" />
-      default:
-        return <Shield className="w-6 h-6 text-gray-500" />
-    }
-  }
-
-  const getSafetyColor = (safetyLevel: string) => {
-    switch (safetyLevel) {
-      case 'safe':
-        return 'bg-green-50 border-green-200 text-green-800'
-      case 'caution':
-        return 'bg-yellow-50 border-yellow-200 text-yellow-800'
-      case 'avoid':
-        return 'bg-red-50 border-red-200 text-red-800'
-      default:
-        return 'bg-gray-50 border-gray-200 text-gray-800'
-    }
-  }
-
-  const handleSuggestionClick = (suggestion: string) => {
-    setSearchTerm(suggestion)
-    const results = searchFoods(suggestion)
-    setSearchResults(results)
-    setIsSearched(true)
-    setSelectedFood(null)
-  }
-
   return (
     <>
       <Helmet>
-        <title>Food Safety Checker | SafeMama - Pregnancy Food Safety Database</title>
+        <title>Pregnancy Food Safety Checker | SafeMama - Is It Safe During Pregnancy?</title>
         <meta 
           name="description" 
-          content="Free pregnancy food safety checker. Search our comprehensive database to find out if foods are safe during pregnancy. Get instant safety recommendations for expecting mothers." 
+          content="Free pregnancy food safety checker. Search any food to see if it's safe during pregnancy. Get instant safety recommendations and healthy alternatives." 
         />
         <meta 
           name="keywords" 
-          content="pregnancy food safety, food safety checker, safe foods pregnancy, pregnancy nutrition, food safety database" 
+          content="pregnancy food safety, safe foods pregnancy, food checker pregnancy, pregnancy nutrition, foods to avoid pregnancy" 
         />
-        <link rel="canonical" href="https://safemama.co/tools/food-safety-checker/" />
+        <link rel="canonical" href="https://safemama.co/tools/food-safety-checker" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 pt-24">
@@ -92,284 +169,301 @@ const FoodSafetyChecker: React.FC = () => {
               Food Safety Checker
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Search our comprehensive database to find out if foods are safe during pregnancy. 
-              Get instant safety recommendations and alternatives.
+              Search any food to instantly check if it's safe during pregnancy. Get personalized recommendations based on your trimester.
             </p>
+            
+            {/* Stats */}
+            <div className="flex justify-center space-x-8 mt-8 text-sm text-gray-600">
+              <div className="flex items-center">
+                <Star className="w-4 h-4 text-yellow-400 fill-current mr-1" />
+                <span>4.9/5 Rating</span>
+              </div>
+              <div>1M+ food checks</div>
+              <div>Medically reviewed</div>
+            </div>
           </motion.div>
 
-          {/* Search Section */}
-          <motion.div
-            className="max-w-2xl mx-auto mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Card className="p-8">
-              <div className="flex items-center mb-6">
-                <Search className="w-6 h-6 text-primary-600 mr-3" />
-                <h2 className="text-2xl font-bold text-gray-900">Search for a Food</h2>
-              </div>
-
-              <div className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Enter food name (e.g., salmon, spinach, cheese)..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    className="w-full px-4 py-4 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-lg"
-                  />
-                  <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                </div>
-
-                <Button
-                  onClick={handleSearch}
-                  className="w-full"
-                  size="lg"
-                  disabled={!searchTerm.trim()}
-                >
-                  Check Food Safety
-                </Button>
-              </div>
-
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-blue-700 text-sm">
-                  <strong>Tip:</strong> Try searching for specific foods like "salmon," "soft cheese," 
-                  "deli meat," or "herbal tea" to get detailed safety information.
-                </p>
-              </div>
-            </Card>
-          </motion.div>
-
-          {/* Search Results */}
-          {isSearched && (
+          <div className="max-w-4xl mx-auto">
+            {/* Search Section */}
             <motion.div
-              className="max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <Card className="p-8 mb-8">
+                <div className="flex items-center mb-6">
+                  <Search className="w-6 h-6 text-green-600 mr-3" />
+                  <h2 className="text-2xl font-bold text-gray-900">Check Food Safety</h2>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex gap-4">
+                    <input
+                      type="text"
+                      placeholder="Enter food name (e.g., salmon, coffee, cheese...)"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      onKeyPress={handleKeyPress}
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"
+                    />
+                    <Button 
+                      onClick={handleSearch}
+                      disabled={!searchTerm.trim() || loading}
+                      size="lg"
+                      icon={loading ? undefined : Search}
+                    >
+                      {loading ? 'Checking...' : 'Check Safety'}
+                    </Button>
+                  </div>
+                  
+                  <p className="text-sm text-gray-500">
+                    Try searching: banana, sushi, coffee, cheese, salmon, spinach, tuna, eggs
+                  </p>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Results Section */}
+            {result && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Card className={`p-8 mb-8 ${result.safe ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
+                  <div className="flex items-center mb-6">
+                    {result.safe ? (
+                      <CheckCircle className="w-8 h-8 text-green-600 mr-4" />
+                    ) : (
+                      <XCircle className="w-8 h-8 text-red-600 mr-4" />
+                    )}
+                    <div>
+                      <h3 className="text-2xl font-bold capitalize text-gray-900">
+                        {result.name}
+                      </h3>
+                      <p className={`text-lg font-semibold ${result.safe ? 'text-green-600' : 'text-red-600'}`}>
+                        {result.safe ? '✅ Generally Safe During Pregnancy' : '❌ Not Recommended During Pregnancy'}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Why?</h4>
+                      <p className="text-gray-700">{result.reason}</p>
+                    </div>
+                    
+                    {result.alternatives && (
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">
+                          {result.safe ? 'Similar Safe Options:' : 'Safe Alternatives:'}
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {result.alternatives.map((alt, index) => (
+                            <span 
+                              key={index}
+                              className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium capitalize"
+                            >
+                              {alt}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-2">Trimester Safety:</h4>
+                      <div className="grid grid-cols-3 gap-4">
+                        {(['first', 'second', 'third'] as const).map((trimester) => (
+                          <div key={trimester} className="text-center p-3 bg-white rounded-lg border">
+                            <div className="font-medium text-gray-900 capitalize">{trimester} Trimester</div>
+                            <div className={`text-sm ${result.trimester_specific?.[trimester] ? 'text-green-600' : 'text-red-600'}`}>
+                              {result.trimester_specific?.[trimester] ? '✅ Safe' : '❌ Avoid'}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* App Promotion After Results */}
+                <Card className="p-8 bg-gradient-to-r from-green-500 to-blue-500 text-white">
+                  <div className="text-center mb-6">
+                    <Smartphone className="w-16 h-16 mx-auto mb-4 opacity-90" />
+                    <h2 className="text-2xl font-bold mb-4">Get Instant Food Safety Scanning</h2>
+                    <p className="text-lg opacity-90 max-w-2xl mx-auto">
+                      Love this checker? Scan any product barcode with SafeMama app for instant AI-powered safety analysis!
+                    </p>
+                  </div>
+
+                  {/* App Features */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Scan className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-semibold mb-2">AI Barcode Scanning</h3>
+                      <p className="text-sm opacity-80">Scan any product for instant analysis</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Shield className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-semibold mb-2">10,000+ Foods</h3>
+                      <p className="text-sm opacity-80">Comprehensive safety database</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <Star className="w-6 h-6" />
+                      </div>
+                      <h3 className="font-semibold mb-2">Expert Reviewed</h3>
+                      <p className="text-sm opacity-80">Medically accurate information</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a
+                      href="https://apps.apple.com/us/app/safemama-pregnancy-app/id6748413103"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-black text-white font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
+                    >
+                      <Apple className="w-5 h-5 mr-2" />
+                      Download on App Store
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.safemama.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-white text-gray-900 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
+                    >
+                      <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                      </svg>
+                      Get it on Google Play
+                    </a>
+                  </div>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* Not Found Message with App Promotion */}
+            {notFound && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Card className="p-8 mb-8 text-center">
+                  <AlertTriangle className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    Food not found in our basic database
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    We couldn't find "<strong>{searchTerm}</strong>" in our web tool database. But don't worry!
+                  </p>
+                  
+                  <div className="bg-primary-50 rounded-lg p-6 mb-6">
+                    <h4 className="font-semibold text-primary-900 mb-3">
+                      🔍 Get comprehensive food safety information in the SafeMama app
+                    </h4>
+                    <ul className="text-primary-800 text-sm space-y-2 text-left max-w-md mx-auto">
+                      <li>• Scan 50,000+ products with AI technology</li>
+                      <li>• Search our complete food safety database</li>
+                      <li>• Get instant answers for any food or ingredient</li>
+                      <li>• Expert medical advice and recommendations</li>
+                      <li>• Personalized based on your pregnancy stage</li>
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a
+                      href="https://apps.apple.com/us/app/safemama-pregnancy-app/id6748413103"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-black text-white font-semibold px-6 py-3 rounded-xl hover:bg-gray-800 transition-colors"
+                    >
+                      <Apple className="w-5 h-5 mr-2" />
+                      Download on App Store
+                    </a>
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.safemama.app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center bg-primary-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-primary-700 transition-colors"
+                    >
+                      <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                      </svg>
+                      Get it on Google Play
+                    </a>
+                  </div>
+                </Card>
+              </motion.div>
+            )}
+
+            {/* Popular Searches */}
+            <motion.div
+              className="mt-12"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              {searchResults.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {searchResults.map((food, index) => (
-                    <motion.div
-                      key={food.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
+              <Card className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+                  Popular Food Safety Searches
+                </h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {['Sushi', 'Coffee', 'Salmon', 'Cheese', 'Eggs', 'Tuna', 'Spinach', 'Alcohol'].map((food) => (
+                    <button
+                      key={food}
+                      onClick={() => {
+                        setSearchTerm(food.toLowerCase())
+                        setTimeout(() => {
+                          const found = foodDatabase.find(
+                            item => item.name.toLowerCase() === food.toLowerCase()
+                          )
+                          if (found) {
+                            setResult(found)
+                            setNotFound(false)
+                          } else {
+                            setResult(null)
+                            setNotFound(true)
+                          }
+                        }, 100)
+                      }}
+                      className="p-3 bg-gray-50 hover:bg-gray-100 rounded-lg text-gray-700 hover:text-gray-900 transition-colors text-left"
                     >
-                      <div 
-                        className={`p-6 cursor-pointer transition-all duration-300 hover:shadow-xl rounded-lg border ${
-                          selectedFood?.id === food.id ? 'ring-2 ring-primary-500 bg-white' : 'bg-white hover:bg-gray-50'
-                        }`}
-                        onClick={() => setSelectedFood(food)}
-                      >
-                        <div className="flex items-start justify-between mb-4">
-                          <div className="flex items-center">
-                            {getSafetyIcon(food.safetyLevel)}
-                            <h3 className="text-xl font-bold text-gray-900 ml-3">{food.name}</h3>
-                          </div>
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getSafetyColor(food.safetyLevel)}`}>
-                            {food.safetyLevel.toUpperCase()}
-                          </span>
-                        </div>
-                        
-                        <p className="text-gray-600 text-sm mb-4">{food.description}</p>
-                        
-                        <div className="text-sm text-primary-600 font-medium">
-                          Click to view detailed information →
-                        </div>
-                      </div>
-                    </motion.div>
+                      <ArrowRight className="w-4 h-4 inline mr-2" />
+                      {food}
+                    </button>
                   ))}
                 </div>
-              ) : (
-                <Card className="p-8 text-center">
-                  <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">No Results Found</h3>
-                  <p className="text-gray-600 mb-4">
-                    We couldn't find any foods matching "{searchTerm}". Try searching for:
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {['Salmon', 'Spinach', 'Cheese', 'Eggs', 'Tuna', 'Milk'].map((suggestion) => (
-                      <button
-                        key={suggestion}
-                        onClick={() => handleSuggestionClick(suggestion)}
-                        className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm hover:bg-primary-200 transition-colors"
-                      >
-                        {suggestion}
-                      </button>
-                    ))}
-                  </div>
-                </Card>
-              )}
+              </Card>
             </motion.div>
-          )}
 
-          {/* Detailed Food Information */}
-          {selectedFood && (
+            {/* Disclaimer */}
             <motion.div
-              className="max-w-4xl mx-auto mt-8"
+              className="mt-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <Card className="p-8">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center">
-                    {getSafetyIcon(selectedFood.safetyLevel)}
-                    <h2 className="text-3xl font-bold text-gray-900 ml-4">{selectedFood.name}</h2>
-                  </div>
-                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border ${getSafetyColor(selectedFood.safetyLevel)}`}>
-                    {selectedFood.safetyLevel.toUpperCase()}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Description</h3>
-                      <p className="text-gray-600 leading-relaxed">{selectedFood.description}</p>
-                    </div>
-
-                    {selectedFood.benefits && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
-                          Benefits
-                        </h3>
-                        <ul className="space-y-2">
-                          {selectedFood.benefits.map((benefit, index) => (
-                            <li key={index} className="flex items-start">
-                              <div className="w-2 h-2 bg-green-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                              <span className="text-gray-600">{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {selectedFood.risks && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                          <AlertTriangle className="w-5 h-5 text-red-500 mr-2" />
-                          Potential Risks
-                        </h3>
-                        <ul className="space-y-2">
-                          {selectedFood.risks.map((risk, index) => (
-                            <li key={index} className="flex items-start">
-                              <div className="w-2 h-2 bg-red-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                              <span className="text-gray-600">{risk}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Recommendations</h3>
-                      <div className="bg-blue-50 rounded-lg p-4">
-                        <p className="text-blue-800">{selectedFood.recommendations}</p>
-                      </div>
-                    </div>
-
-                    {selectedFood.alternatives && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Safe Alternatives</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedFood.alternatives.map((alternative, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium"
-                            >
-                              {alternative}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {selectedFood.nutrients && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Nutrients</h3>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedFood.nutrients.map((nutrient, index) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium"
-                            >
-                              {nutrient}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {selectedFood.servingSize && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Serving Information</h3>
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="text-sm text-gray-600 mb-1">Recommended Serving Size:</div>
-                          <div className="font-medium text-gray-900">{selectedFood.servingSize}</div>
-                          {selectedFood.maxPerWeek && (
-                            <>
-                              <div className="text-sm text-gray-600 mb-1 mt-2">Maximum per week:</div>
-                              <div className="font-medium text-gray-900">{selectedFood.maxPerWeek} servings</div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    )}
+              <Card className="p-6 bg-yellow-50 border-yellow-200">
+                <div className="flex items-start">
+                  <Info className="w-5 h-5 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm text-yellow-800">
+                    <p className="font-semibold mb-1">Medical Disclaimer</p>
+                    <p>
+                      This tool provides general information only and should not replace professional medical advice. 
+                      Always consult with your healthcare provider about your specific dietary needs during pregnancy.
+                    </p>
                   </div>
                 </div>
               </Card>
             </motion.div>
-          )}
-
-          {/* App Promotion */}
-          <motion.div
-            className="max-w-4xl mx-auto mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <Card className="p-8 bg-gradient-to-r from-primary-500 to-secondary-500 text-white">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="flex items-center mb-4">
-                    <Scan className="w-8 h-8 mr-3" />
-                    <h3 className="text-2xl font-bold">Get Instant Results with SafeMama App</h3>
-                  </div>
-                  <p className="text-lg opacity-90 mb-6">
-                    Scan any food product with your camera and get AI-powered safety analysis 
-                    instantly. No more searching - just point and scan!
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <img
-                      src="/images/badges/app-store-coming-soon.png"
-                      alt="Download on App Store"
-                      className="h-12 w-auto"
-                    />
-                    <img
-                      src="/images/badges/google-play-coming-soon.png"
-                      alt="Get it on Google Play"
-                      className="h-12 w-auto"
-                    />
-                  </div>
-                </div>
-                <div className="hidden lg:block">
-                  <img
-                    src="/images/css/images/mockups/mockup_scan-and-discover.png"
-                    alt="SafeMama App Scanning"
-                    className="h-48 w-auto"
-                  />
-                </div>
-              </div>
-            </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </>

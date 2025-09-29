@@ -12,7 +12,8 @@ import {
   Scan,
   MessageCircle,
   BookOpen,
-  Users
+  Users,
+  Download
 } from 'lucide-react'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
@@ -122,6 +123,110 @@ const CompareIndex: React.FC = () => {
         'Due date calculator'
       ],
       color: 'bg-blue-500'
+    },
+    {
+      name: 'BabyCenter',
+      logo: '/images/compare/babycenter-logo.png',
+      rating: 4.7,
+      downloads: '100M+',
+      pricing: 'Free + Premium',
+      slug: 'safemama-vs-babycenter',
+      features: {
+        aiScanning: false,
+        expertQA: false,
+        personalizedGuides: true,
+        offlineAccess: false,
+        medicationCheck: false,
+        nutritionTracking: true,
+        communitySupport: true,
+        multilingual: true
+      },
+      highlights: [
+        'Massive community',
+        'Weekly updates',
+        'Baby names tool',
+        'Registry integration',
+        'Birth month groups'
+      ],
+      color: 'bg-orange-500'
+    },
+    {
+      name: 'What to Expect',
+      logo: '/images/compare/what-to-expect-logo.png',
+      rating: 4.6,
+      downloads: '10M+',
+      pricing: 'Free + Premium',
+      slug: 'safemama-vs-what-to-expect',
+      features: {
+        aiScanning: false,
+        expertQA: false,
+        personalizedGuides: true,
+        offlineAccess: true,
+        medicationCheck: false,
+        nutritionTracking: true,
+        communitySupport: true,
+        multilingual: false
+      },
+      highlights: [
+        'Birth planning tools',
+        'Community forums',
+        'Kick counter',
+        'Hospital bag checklist',
+        'Expert articles'
+      ],
+      color: 'bg-indigo-500'
+    },
+    {
+      name: 'The Bump',
+      logo: '/images/compare/the-bump-logo.png',
+      rating: 4.4,
+      downloads: '2M+',
+      pricing: 'Free + Premium',
+      slug: 'safemama-vs-the-bump',
+      features: {
+        aiScanning: false,
+        expertQA: false,
+        personalizedGuides: true,
+        offlineAccess: false,
+        medicationCheck: false,
+        nutritionTracking: true,
+        communitySupport: true,
+        multilingual: false
+      },
+      highlights: [
+        'Stylish design',
+        'Registry management',
+        'Bump photos',
+        'Size comparisons',
+        'Shopping guides'
+      ],
+      color: 'bg-teal-500'
+    },
+    {
+      name: 'Glow Nurture',
+      logo: '/images/compare/glow-nurture-logo.png',
+      rating: 4.2,
+      downloads: '1M+',
+      pricing: 'Free + Premium',
+      slug: 'safemama-vs-glow-nurture',
+      features: {
+        aiScanning: false,
+        expertQA: false,
+        personalizedGuides: true,
+        offlineAccess: false,
+        medicationCheck: false,
+        nutritionTracking: true,
+        communitySupport: true,
+        multilingual: false
+      },
+      highlights: [
+        'Partner connectivity',
+        'Data insights',
+        'Mood tracking',
+        'Contraction timer',
+        'Milestone tracking'
+      ],
+      color: 'bg-emerald-500'
     }
   ]
 
@@ -142,7 +247,7 @@ const CompareIndex: React.FC = () => {
         <title>Best Pregnancy Apps Comparison 2025 | SafeMama vs Competitors</title>
         <meta 
           name="description" 
-          content="Compare SafeMama with top pregnancy apps like Ovia, WebMD, Pregnancy+, and The Bump. See features, pricing, and user reviews to choose the best pregnancy safety app." 
+          content="Compare SafeMama with top pregnancy apps like Ovia, WebMD, Pregnancy+, BabyCenter, What to Expect, The Bump, and Glow Nurture. See features, pricing, and user reviews to choose the best pregnancy safety app." 
         />
         <meta 
           name="keywords" 
@@ -179,7 +284,7 @@ const CompareIndex: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {competitors.map((app, index) => (
+            {competitors.slice(0, 8).map((app, index) => (
               <motion.div
                 key={app.name}
                 initial={{ opacity: 0, y: 30 }}
@@ -262,7 +367,7 @@ const CompareIndex: React.FC = () => {
                   <thead>
                     <tr className="bg-gray-50">
                       <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Feature</th>
-                      {competitors.map((app) => (
+                      {competitors.slice(0, 8).map((app) => (
                         <th key={app.name} className="px-6 py-4 text-center text-sm font-semibold text-gray-900">
                           {app.name}
                         </th>
@@ -278,7 +383,7 @@ const CompareIndex: React.FC = () => {
                             {feature.name}
                           </div>
                         </td>
-                        {competitors.map((app) => (
+                        {competitors.slice(0, 8).map((app) => (
                           <td key={app.name} className="px-6 py-4 text-center">
                             {app.features[feature.key as keyof typeof app.features] ? (
                               <Check className="w-5 h-5 text-green-500 mx-auto" />
@@ -306,7 +411,7 @@ const CompareIndex: React.FC = () => {
               Detailed Comparisons
             </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {competitors.slice(1).map((competitor, index) => (
                 <motion.div
                   key={competitor.name}
@@ -373,16 +478,24 @@ const CompareIndex: React.FC = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <img
-                  src="/images/badges/app-store-coming-soon.png"
-                  alt="Download on App Store"
-                  className="h-14 w-auto mx-auto sm:mx-0"
-                />
-                <img
-                  src="/images/badges/google-play-coming-soon.png"
-                  alt="Get it on Google Play"
-                  className="h-14 w-auto mx-auto sm:mx-0"
-                />
+                <a
+                  href="https://apps.apple.com/us/app/safemama-pregnancy-app/id6748413103"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center bg-white text-primary-600 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download on App Store
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.safemama.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center bg-white text-primary-600 font-semibold px-6 py-3 rounded-xl hover:bg-gray-100 transition-colors"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Get on Google Play
+                </a>
               </div>
             </Card>
           </motion.div>
