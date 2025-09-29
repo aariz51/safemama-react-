@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, ChevronDown, Smartphone } from 'lucide-react'
+import { Menu, X, ChevronDown, Smartphone, Globe } from 'lucide-react'
 import Button from '../ui/Button'
 
 const Header: React.FC = () => {
@@ -42,7 +42,21 @@ const Header: React.FC = () => {
       ]
     },
     { name: 'Compare Apps', href: '/compare' },
-    { name: 'Safety Guides', href: '/safety-guides' }
+    { name: 'Safety Guides', href: '/safety-guides' },
+    {
+      name: 'Country',
+      href: '#',
+      submenu: [
+        { name: '🇺🇸 United States', href: '/us' },
+        { name: '🇬🇧 United Kingdom', href: '/uk' },
+        { name: '🇨🇦 Canada', href: '/canada' },
+        { name: '🇦🇺 Australia', href: '/australia' },
+        { name: '🇩🇪 Germany', href: '/germany' },
+        { name: '🇨🇭 Switzerland', href: '/switzerland' },
+        { name: '🇳🇱 Netherlands', href: '/netherlands' },
+        { name: '🇸🇪 Sweden', href: '/sweden' }
+      ]
+    }
   ]
   
   return (
@@ -77,20 +91,23 @@ const Header: React.FC = () => {
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <Link
-                  to={item.href}
+                  to={item.href === '#' ? location.pathname : item.href}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     location.pathname === item.href
                       ? 'text-primary-600 bg-primary-50'
                       : `${isScrolled ? 'text-gray-700' : 'text-white'} hover:text-primary-600 hover:bg-primary-50/80`
                   }`}
                 >
-                  <span className="whitespace-nowrap">{item.name}</span>
+                  <span className="whitespace-nowrap flex items-center">
+                    {item.name === 'Country' && <Globe className="w-4 h-4 mr-1" />}
+                    {item.name}
+                  </span>
                   {item.submenu && <ChevronDown className="w-4 h-4" />}
                 </Link>
                 
                 {/* Dropdown Menu */}
                 {item.submenu && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-primary-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className={`absolute top-full left-0 mt-2 ${item.name === 'Country' ? 'w-56' : 'w-64'} bg-white rounded-xl shadow-lg border border-primary-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50`}>
                     <div className="py-2">
                       {item.submenu.map((subItem) => (
                         <Link
@@ -146,14 +163,15 @@ const Header: React.FC = () => {
                 {navigation.map((item) => (
                   <div key={item.name}>
                     <Link
-                      to={item.href}
-                      className={`block px-4 py-3 text-base font-medium rounded-lg mx-2 transition-colors ${
+                      to={item.href === '#' ? location.pathname : item.href}
+                      className={`block px-4 py-3 text-base font-medium rounded-lg mx-2 transition-colors flex items-center ${
                         location.pathname === item.href
                           ? 'text-primary-600 bg-primary-50'
                           : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
+                      {item.name === 'Country' && <Globe className="w-4 h-4 mr-2" />}
                       {item.name}
                     </Link>
                     {item.submenu && (

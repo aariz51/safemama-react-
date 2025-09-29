@@ -1,51 +1,90 @@
 {
-  "name": "SafeMama - Pregnancy Safety Scanner",
+  "name": "SafeMama - AI Pregnancy Safety App",
   "short_name": "SafeMama",
-  "description": "AI-powered pregnancy safety scanner for food and medicine safety",
+  "description": "AI-powered pregnancy safety platform with food scanning, medication checks, and expert guidance for expecting mothers worldwide.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#6366f1",
   "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  
   "icons": [
     {
-      "src": "/images/icons/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/icon-192x192.png",
+      "src": "/images/logo/safemama-logo-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
-      "src": "/images/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png"
+      "src": "/images/logo/safemama-logo-512.png",
+      "sizes": "512x512", 
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/images/icons/icon-512x512.png",
-      "sizes": "512x512",
+      "src": "/images/logo/safemama-logo-apple.png",
+      "sizes": "180x180",
       "type": "image/png"
     }
-  ]
+  ],
+  
+  "categories": ["health", "medical", "pregnancy", "lifestyle", "parenting"],
+  "screenshots": [
+    {
+      "src": "/images/mockups/safemama-scan-feature.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "AI Food Safety Scanner"
+    },
+    {
+      "src": "/images/mockups/safemama-analysis-screen.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow", 
+      "label": "Instant Safety Analysis"
+    }
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "Food Safety Checker",
+      "short_name": "Food Check",
+      "description": "Check if food is safe during pregnancy",
+      "url": "/tools/food-safety-checker",
+      "icons": [{ "src": "/images/icons/food-checker.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Due Date Calculator",
+      "short_name": "Due Date",
+      "description": "Calculate your pregnancy due date",
+      "url": "/tools/due-date-calculator",
+      "icons": [{ "src": "/images/icons/calculator.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Safety Guides",
+      "short_name": "Guides",
+      "description": "Expert pregnancy safety guides",
+      "url": "/safety-guides/",
+      "icons": [{ "src": "/images/icons/guides.png", "sizes": "96x96" }]
+    }
+  ],
+
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.safemama.app",
+      "id": "com.safemama.app"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/us/app/safemama-pregnancy-app/id6748413103"
+    }
+  ],
+  
+  "prefer_related_applications": true,
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7"
 }

@@ -38,6 +38,14 @@ const Footer: React.FC = () => {
       { name: 'Compare Apps', href: '/compare' },
       { name: 'Country Guides', href: '#country-guides' }
     ],
+    global: [
+      { name: '🇺🇸 United States', href: '/us' },
+      { name: '🇬🇧 United Kingdom', href: '/uk' },
+      { name: '🇨🇦 Canada', href: '/canada' },
+      { name: '🇦🇺 Australia', href: '/australia' },
+      { name: '🇩🇪 Germany', href: '/germany' },
+      { name: '🇨🇭 Switzerland', href: '/switzerland' }
+    ],
     support: [
       { name: 'Help Center', href: '/help' },
       { name: 'Contact Us', href: '/contact' },
@@ -136,8 +144,8 @@ const Footer: React.FC = () => {
       
       {/* Main Footer Content - Enhanced with working links */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          {/* Company Info */}
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-8">
+          {/* Company Info - Takes 2 columns */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center space-x-3 mb-6">
               <span className="text-2xl font-bold bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent">
@@ -185,8 +193,8 @@ const Footer: React.FC = () => {
             </div>
           </div>
           
-          {/* Footer Links - Enhanced with working routes */}
-          <div className="lg:col-span-3 grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Footer Links - Enhanced with country section taking 4 columns */}
+          <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-5 gap-8">
             <div>
               <h4 className="text-lg font-bold mb-6 text-white">Product</h4>
               <ul className="space-y-3">
@@ -238,6 +246,23 @@ const Footer: React.FC = () => {
                     <Link
                       to={link.href}
                       className="text-gray-200 hover:text-primary-400 transition-colors duration-200 font-medium"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* NEW GLOBAL SECTION */}
+            <div>
+              <h4 className="text-lg font-bold mb-6 text-white">Global</h4>
+              <ul className="space-y-3">
+                {footerLinks.global.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
+                      className="text-gray-200 hover:text-primary-400 transition-colors duration-200 font-medium text-sm"
                     >
                       {link.name}
                     </Link>

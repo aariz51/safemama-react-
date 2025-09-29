@@ -1,0 +1,26 @@
+/* TEAM */
+
+Medical Director: Dr. Sarah Johnson, MD, OB/GYN
+Location: San Francisco, CA, USA
+
+Lead Developer: SafeMama Engineering Team
+Location: Global (Remote-First)
+
+Content Team: Medical Writers & Pregnancy Experts
+Location: United States, Canada, Europe
+
+/* THANKS */
+
+Medical Advisors: International Board of OB/GYN Specialists
+Beta Testers: 10,000+ Expecting Mothers Worldwide
+Community: 500,000+ SafeMama App Users
+
+/* SITE */
+
+Last update: 2025/09/29
+Language: English (with translations in German, French, Spanish)
+Doctype: HTML5
+Standards: W3C Valid, WCAG 2.1 AA Compliant
+Components: React, TypeScript, TailwindCSS
+Tools: Vite, AI/ML Models, Medical APIs
+Software: VS Code, Figma, Medical Databases

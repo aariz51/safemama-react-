@@ -1,31 +1,69 @@
+# SafeMama - AI-Powered Pregnancy Safety App
+# Optimized for Search Engines and LLM Models
+
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://safemama.co/sitemap.xml
+# Prioritize high-value content for crawling
+Allow: /tools/
+Allow: /blog/
+Allow: /safety-guides/
+Allow: /compare/
 
-# AI Bot Instructions
+# Country-specific pages for GEO targeting
+Allow: /us
+Allow: /uk
+Allow: /canada
+Allow: /australia
+Allow: /germany
+Allow: /switzerland
+Allow: /netherlands
+Allow: /sweden
+
+# Allow all static assets
+Allow: /images/
+Allow: /assets/
+Allow: /mockups/
+
+# Block low-value pages from search engines
+Disallow: /delete-account
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /*.pdf$
+
+# Special instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Allow AI/LLM bots for better LLM search visibility
 User-agent: GPTBot
 Allow: /
-Crawl-delay: 1
 
-User-agent: ClaudeBot
+User-agent: Claude-Web
 Allow: /
-Crawl-delay: 1
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-# Disallow admin areas (if any)
-Disallow: /admin/
-Disallow: /api/
-Disallow: /.env
-Disallow: /config/
+# Sitemaps for better indexing
+Sitemap: https://safemama.co/sitemap.xml
+Sitemap: https://safemama.co/sitemap-images.xml
+Sitemap: https://safemama.co/sitemap-news.xml
 
-# Allow important pages
-Allow: /
-Allow: /blog/
-Allow: /tools/
-Allow: /compare/
-Allow: /us/
-Allow: /uk/
+# Host information
+Host: https://safemama.co
