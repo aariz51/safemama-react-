@@ -42,7 +42,7 @@ const Header: React.FC = () => {
       ]
     },
     { name: 'Compare Apps', href: '/compare' },
-    { name: 'Safety Guides', href: '#guides' }
+    { name: 'Safety Guides', href: '/safety-guides' }
   ]
   
   return (
@@ -55,11 +55,11 @@ const Header: React.FC = () => {
       transition={{ duration: 0.5 }}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo - Removed image, kept only SafeMama text */}
-          <Link to="/" className="flex items-center space-x-3 group">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo - Enhanced Mobile Responsiveness */}
+          <Link to="/" className="flex items-center space-x-2 sm:space-x-3 group flex-shrink-0">
             <motion.span
-              className="text-2xl font-bold"
+              className="text-xl sm:text-2xl lg:text-2xl font-bold leading-tight"
               whileHover={{ scale: 1.02 }}
               style={{
                 background: 'linear-gradient(135deg, #ec4899 0%, #0ea5e9 100%)',
@@ -72,8 +72,8 @@ const Header: React.FC = () => {
             </motion.span>
           </Link>
           
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Hidden on small screens */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <Link
@@ -84,7 +84,7 @@ const Header: React.FC = () => {
                       : `${isScrolled ? 'text-gray-700' : 'text-white'} hover:text-primary-600 hover:bg-primary-50/80`
                   }`}
                 >
-                  <span>{item.name}</span>
+                  <span className="whitespace-nowrap">{item.name}</span>
                   {item.submenu && <ChevronDown className="w-4 h-4" />}
                 </Link>
                 
@@ -108,24 +108,26 @@ const Header: React.FC = () => {
             ))}
           </div>
           
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* CTA Button - Hidden on mobile */}
+          <div className="hidden md:flex items-center space-x-4 flex-shrink-0">
             <Button
               variant="primary"
               icon={Smartphone}
               href="https://dub.sh/safemama"
-              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+              className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold px-4 lg:px-6 py-2 lg:py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 text-sm lg:text-base"
             >
-              Download App
+              <span className="hidden lg:inline">Download App</span>
+              <span className="lg:hidden">Download</span>
             </Button>
           </div>
           
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden p-2 rounded-md transition-colors ${
+            className={`lg:hidden p-2 rounded-md transition-colors flex-shrink-0 ${
               isScrolled ? 'text-gray-700 hover:text-primary-600 hover:bg-primary-50' : 'text-white hover:text-primary-200 hover:bg-white/10'
             }`}
+            aria-label="Toggle mobile menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -138,14 +140,14 @@ const Header: React.FC = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white/95 backdrop-blur-md border-t border-primary-100 mt-2 rounded-b-xl shadow-lg"
+              className="lg:hidden bg-white/95 backdrop-blur-md border-t border-primary-100 mt-2 rounded-b-xl shadow-lg overflow-hidden"
             >
-              <div className="py-4 space-y-2">
+              <div className="py-4 space-y-2 max-h-screen overflow-y-auto">
                 {navigation.map((item) => (
                   <div key={item.name}>
                     <Link
                       to={item.href}
-                      className={`block px-4 py-2 text-base font-medium rounded-lg mx-2 transition-colors ${
+                      className={`block px-4 py-3 text-base font-medium rounded-lg mx-2 transition-colors ${
                         location.pathname === item.href
                           ? 'text-primary-600 bg-primary-50'
                           : 'text-gray-700 hover:text-primary-600 hover:bg-primary-50'
@@ -175,7 +177,7 @@ const Header: React.FC = () => {
                     variant="primary"
                     icon={Smartphone}
                     href="https://dub.sh/safemama"
-                    className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700"
+                    className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-center justify-center"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Download App

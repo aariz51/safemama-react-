@@ -8,6 +8,7 @@ import Footer from './components/layout/Footer'
 
 // Page Components
 import Home from './pages/Home'
+import SafetyGuides from './pages/SafetyGuides'
 import BlogIndex from './pages/blog/BlogIndex'
 import FirstTrimesterFoodSafety from './pages/blog/FirstTrimesterFoodSafety'
 import FoodsToAvoidDuringPregnancy from './pages/blog/FoodsToAvoidDuringPregnancy'
@@ -53,6 +54,7 @@ const App: React.FC = () => {
         <Routes>
           {/* Home */}
           <Route path="/" element={<Home />} />
+          <Route path="/safety-guides" element={<SafetyGuides />} />
           
           {/* Blog Routes */}
           <Route path="/blog" element={<BlogIndex />} />
