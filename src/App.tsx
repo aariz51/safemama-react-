@@ -5,6 +5,7 @@ import './App.css'
 // Layout Components
 import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
+import ScrollToTop from './components/layout/ScrollToTop'
 
 // Page Components
 import Home from './pages/Home'
@@ -48,6 +49,7 @@ import DueDateCalculator from './pages/tools/DueDateCalculator'
 import FoodSafetyChecker from './pages/tools/FoodSafetyChecker'
 import NutritionCalculator from './pages/tools/NutritionCalculator'
 import MedicationGuide from './pages/tools/MedicationGuide'
+import BabyGrowthCalculator from './pages/tools/BabyGrowthCalculator';
 
 // Country Pages (GEO Targeting)
 import USPage from './pages/country/USPage'
@@ -69,6 +71,7 @@ import DeleteAccount from './pages/legal/DeleteAccount'
 function App() {
   return (
     <div className="App">
+      <ScrollToTop />
       <Header />
       <main className="main-content">
         <Routes>
@@ -114,6 +117,7 @@ function App() {
           <Route path="/tools/food-safety-checker" element={<FoodSafetyChecker />} />
           <Route path="/tools/nutrition-calculator" element={<NutritionCalculator />} />
           <Route path="/tools/medication-guide" element={<MedicationGuide />} />
+          <Route path="/tools/baby-growth-calculator" element={<BabyGrowthCalculator />} />
           
           {/* Country Pages (GEO Targeting) */}
           <Route path="/us" element={<USPage />} />

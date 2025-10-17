@@ -27,7 +27,12 @@ const Header: React.FC = () => {
         { name: 'Due Date Calculator', href: '/tools/due-date-calculator' },
         { name: 'Food Safety Checker', href: '/tools/food-safety-checker' },
         { name: 'Nutrition Calculator', href: '/tools/nutrition-calculator' },
-        { name: 'Medication Guide', href: '/tools/medication-guide' }
+        { name: 'Medication Guide', href: '/tools/medication-guide' },
+        { 
+          name: 'Baby Growth Calculator', 
+          href: '/tools/baby-growth-calculator',
+          description: 'Track baby development week by week'
+        }
       ]
     },
     {

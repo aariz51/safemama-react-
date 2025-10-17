@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Handle Angular and React Router
+# If the request is for a file or directory that exists, serve it
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise, serve index.html
+RewriteRule ^.*$ /index.html [L]

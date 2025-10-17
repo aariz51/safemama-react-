@@ -12,7 +12,8 @@ import {
   Star,
   Users,
   Clock,
-  CheckCircle
+  CheckCircle,
+  Baby
 } from 'lucide-react'
 import Button from '../../components/ui/Button'
 import Card from '../../components/ui/Card'
@@ -82,6 +83,17 @@ const ToolsIndex: React.FC = () => {
       usage: '8K+ searches',
       rating: 4.8,
       route: '/tools/medication-guide'
+    },
+    {
+      id: 'baby-growth-calculator',
+      title: 'Baby Growth Calculator',
+      description: 'Track your baby\'s development week by week with detailed growth information and milestones.',
+      icon: Baby,
+      color: 'from-pink-500 to-purple-600',
+      features: ['Week-by-week tracking', 'Developmental milestones', 'Size comparisons', 'Growth charts'],
+      usage: '5K calculations',
+      rating: 4.9,
+      route: '/tools/baby-growth-calculator'
     }
   ]
 
