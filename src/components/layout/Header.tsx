@@ -49,8 +49,8 @@ const Header: React.FC = () => {
     { name: 'Compare Apps', href: '/compare' },
     { name: 'Safety Guides', href: '/safety-guides' },
     {
-      name: 'Country',
-      href: '#',
+      name: 'Countries',
+      href: '#countries',
       submenu: [
         { name: '🇺🇸 United States', href: '/us' },
         { name: '🇬🇧 United Kingdom', href: '/uk' },
@@ -92,28 +92,28 @@ const Header: React.FC = () => {
             </motion.span>
           </Link>
           
-          {/* FIXED: Mobile-Visible Navigation - Show on all screens */}
-          <div className="hidden sm:flex items-center space-x-1 md:space-x-2 lg:space-x-4 flex-1 justify-center max-w-2xl mx-4">
-            {navigation.slice(0, 5).map((item) => (
+          {/* FIXED: Desktop Navigation - Show ALL navigation items */}
+          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 flex-1 justify-center max-w-4xl mx-4">
+            {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <Link
-                  to={item.href === '#' ? location.pathname : item.href}
-                  className={`flex items-center space-x-1 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm font-medium transition-colors whitespace-nowrap ${
+                  to={item.href === '#countries' ? location.pathname : item.href}
+                  className={`flex items-center space-x-1 px-2 xl:px-3 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
                     location.pathname === item.href
                       ? 'text-primary-600 bg-primary-50'
                       : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
                   }`}
                 >
                   <span className="flex items-center">
-                    {item.name === 'Country' && <Globe className="w-3 h-3 md:w-4 md:h-4 mr-1" />}
+                    {item.name === 'Countries' && <Globe className="w-4 h-4 mr-1" />}
                     {item.name}
                   </span>
-                  {item.submenu && <ChevronDown className="w-3 h-3 md:w-4 md:h-4" />}
+                  {item.submenu && <ChevronDown className="w-4 h-4" />}
                 </Link>
                 
-                {/* Dropdown Menu - Desktop Only */}
+                {/* Dropdown Menu - Desktop */}
                 {item.submenu && (
-                  <div className={`absolute top-full left-0 mt-2 ${item.name === 'Country' ? 'w-56' : 'w-64'} bg-white rounded-xl shadow-lg border border-primary-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 hidden lg:block`}>
+                  <div className={`absolute top-full left-0 mt-2 ${item.name === 'Countries' ? 'w-64' : 'w-72'} bg-white rounded-xl shadow-lg border border-primary-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50`}>
                     <div className="py-2">
                       {item.submenu.map((subItem) => (
                         <Link
@@ -127,6 +127,46 @@ const Header: React.FC = () => {
                     </div>
                   </div>
                 )}
+              </div>
+            ))}
+          </div>
+          
+          {/* Tablet Navigation - Show limited items */}
+          <div className="hidden md:flex lg:hidden items-center space-x-1 flex-1 justify-center max-w-2xl mx-4">
+            {navigation.slice(0, 5).map((item) => (
+              <div key={item.name} className="relative group">
+                <Link
+                  to={item.href === '#countries' ? location.pathname : item.href}
+                  className={`flex items-center space-x-1 px-2 py-2 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+                    location.pathname === item.href
+                      ? 'text-primary-600 bg-primary-50'
+                      : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
+                  }`}
+                >
+                  <span className="flex items-center">
+                    {item.name === 'Countries' && <Globe className="w-3 h-3 mr-1" />}
+                    {item.name}
+                  </span>
+                  {item.submenu && <ChevronDown className="w-3 h-3" />}
+                </Link>
+              </div>
+            ))}
+          </div>
+          
+          {/* Mobile Navigation - Show core items */}
+          <div className="hidden sm:flex md:hidden items-center space-x-1 flex-1 justify-center max-w-xl mx-4">
+            {navigation.slice(0, 3).map((item) => (
+              <div key={item.name} className="relative group">
+                <Link
+                  to={item.href === '#countries' ? location.pathname : item.href}
+                  className={`flex items-center space-x-1 px-2 py-2 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+                    location.pathname === item.href
+                      ? 'text-primary-600 bg-primary-50'
+                      : 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'
+                  }`}
+                >
+                  <span>{item.name}</span>
+                </Link>
               </div>
             ))}
           </div>
@@ -171,7 +211,7 @@ const Header: React.FC = () => {
                 {navigation.map((item) => (
                   <div key={item.name}>
                     <Link
-                      to={item.href === '#' ? location.pathname : item.href}
+                      to={item.href === '#countries' ? location.pathname : item.href}
                       className={`block px-4 py-3 text-base font-medium rounded-lg mx-2 transition-colors flex items-center ${
                         location.pathname === item.href
                           ? 'text-primary-600 bg-primary-50'
@@ -179,7 +219,7 @@ const Header: React.FC = () => {
                       }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
-                      {item.name === 'Country' && <Globe className="w-4 h-4 mr-2" />}
+                      {item.name === 'Countries' && <Globe className="w-4 h-4 mr-2" />}
                       {item.name}
                     </Link>
                     {item.submenu && (
