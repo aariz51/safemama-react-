@@ -73,11 +73,12 @@ function App() {
     <div className="App">
       <ScrollToTop />
       <Header />
-      <main className="main-content">
+      {/* FIXED: Better mobile spacing with responsive header heights */}
+      <main className="main-content pt-16 sm:pt-18 md:pt-20">
         <Routes>
           {/* Home */}
           <Route path="/" element={<Home />} />
-          
+
           {/* Safety Guides */}
           <Route path="/safety-guides" element={<SafetyGuides />} />
           <Route path="/safety-guides/food-safety" element={<FoodSafetyGuide />} />
@@ -88,7 +89,7 @@ function App() {
           <Route path="/safety-guides/home-safety" element={<HomeSafetyGuide />} />
           <Route path="/safety-guides/first-trimester" element={<FirstTrimesterSafetyGuide />} />
           <Route path="/safety-guides/mental-health" element={<MentalHealthGuide />} />
-          
+
           {/* Blog */}
           <Route path="/blog" element={<BlogIndex />} />
           <Route path="/blog/first-trimester-food-safety" element={<FirstTrimesterFoodSafety />} />
@@ -100,7 +101,7 @@ function App() {
           <Route path="/blog/best-pregnancy-apps-2025" element={<BestPregnancyApps2025 />} />
           <Route path="/blog/pregnancy-diet-guide" element={<PregnancyDietGuide />} />
           <Route path="/blog/pregnancy-exercise-guide" element={<PregnancyExerciseGuide />} />
-          
+
           {/* Compare */}
           <Route path="/compare" element={<CompareIndex />} />
           <Route path="/compare/safemama-vs-ovia" element={<SafemamaVsOvia />} />
@@ -110,7 +111,7 @@ function App() {
           <Route path="/compare/safemama-vs-babycenter" element={<SafemamaVsBabycenter />} />
           <Route path="/compare/safemama-vs-the-bump" element={<SafemamaVsTheBump />} />
           <Route path="/compare/safemama-vs-glow-nurture" element={<SafemamaVsGlowNurture />} />
-          
+
           {/* Tools */}
           <Route path="/tools" element={<ToolsIndex />} />
           <Route path="/tools/due-date-calculator" element={<DueDateCalculator />} />
@@ -118,7 +119,7 @@ function App() {
           <Route path="/tools/nutrition-calculator" element={<NutritionCalculator />} />
           <Route path="/tools/medication-guide" element={<MedicationGuide />} />
           <Route path="/tools/baby-growth-calculator" element={<BabyGrowthCalculator />} />
-          
+
           {/* Country Pages (GEO Targeting) */}
           <Route path="/us" element={<USPage />} />
           <Route path="/uk" element={<UKPage />} />
@@ -128,7 +129,7 @@ function App() {
           <Route path="/switzerland" element={<SwitzerlandPage />} />
           <Route path="/netherlands" element={<NetherlandsPage />} />
           <Route path="/sweden" element={<SwedenPage />} />
-          
+
           {/* Legal */}
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />

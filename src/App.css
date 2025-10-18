@@ -1,16 +1,67 @@
+/* MOBILE-FIRST RESPONSIVE FIXES */
 #root {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  overflow-x: hidden; /* CRITICAL: Prevent horizontal scroll */
 }
 
-/* Remove any constraints for full-width hero */
-.full-width-hero {
+/* Better responsive spacing that matches header heights */
+.main-content {
+  padding-top: 4rem; /* 64px for mobile (h-16) */
+}
+
+@media (min-width: 640px) {
+  .main-content {
+    padding-top: 4.5rem; /* 72px for sm screens (h-18) */
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding-top: 5rem; /* 80px for md screens and up (h-20) */
+  }
+}
+
+/* REMOVED: This was causing mobile overflow issues */
+/* .full-width-hero {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
+} */
+
+/* MOBILE RESPONSIVE HERO SECTION */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+  
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-text {
+    order: 2;
+    padding: 1rem 0;
+  }
+  
+  .hero-images {
+    order: 1;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Prevent viewport width overflow */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .logo {
@@ -19,9 +70,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
